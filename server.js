@@ -1,5 +1,12 @@
 const path = require('path');
 const express = require('express');
+const { Client } = require('pg');
+
+const client = new Client({
+	connnectionString: process.env.DATABASE_URL,
+	ssl: true,
+});
+
 
 const app = express(); // main app object
 
@@ -22,7 +29,23 @@ app.get('/', function (req, res) {
 	console.log("Serving index.html");
 	res.sendFile(__dirname + '/public/html/index.html');
 });
+// for db debuggery
+app.get('/db', function (req, res) {
+	console.log("showing DB results");
+	var dbresult = "";
 
+	client.connect(); // connect to db
+
+	client.query('SELECT * FROM *', (err, res) => { // dump db into variable
+		if (err) throw err;
+		for (let row of res.rows) {
+			dbresult += JSON.stringify(row) + "\n";
+		}
+		client.end();
+	})
+
+	res.send(dbresults); // send results to browser
+});
 
 
 
