@@ -1,0 +1,13 @@
+{
+	"name": "cop4331-9",
+	"description": "Cop 4331 group-9 Small Project",
+	"version": "1.0.0",
+	"scripts": {},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Neruelin/cop4331-9.git"
+	},
+	"dependencies": {
+		"express": "^4.0.0"
+	}
+}
