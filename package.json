@@ -8,6 +8,7 @@
 		"url": "https://github.com/Neruelin/cop4331-9.git"
 	},
 	"dependencies": {
+		"bootstrap": "^4.1.1",
 		"express": "^4.0.0"
 	}
 }
