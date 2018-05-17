@@ -33,10 +33,10 @@ app.get('/', function (req, res) {
 app.get('/db', function (req, res) {
 	console.log("showing DB results");
 	var dbresult = "";
-	var query = 'SELECT datname FROM pg_database WHERE datistemplate = false;';
+
 	client.connect(); // connect to db
 
-	client.query(query, (err, res) => { // dump db into variable
+	client.query('SELECT * FROM *', (err, res) => { // dump db into variable
 		if (err) throw err;
 		for (let row of res.rows) {
 			dbresult += JSON.stringify(row) + "\n";
