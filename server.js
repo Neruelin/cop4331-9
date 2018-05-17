@@ -7,12 +7,13 @@ const port = process.env.PORT || 8080; // uses server env port if exists, else u
 
 /* defining static content directories
    Eg: accessing "domain.com/views" will actually access "server_directory/public/html/"
-   frontend dir name            backend dir name
-		   |			                |          */
-app.use("/views", express.static('public/html/'));
-app.use("/style", express.static('public/css'));
-app.use("/js", express.static('public/js'));
-app.use("/", express.static('public'));
+   frontend dir name             backend dir name
+		 |			                  |               */
+app.use('/', 		express.static('public/'));
+app.use('/media', 	express.static('public/media/'));
+app.use('/html', 	express.static('public/html/'));
+app.use('/style', 	express.static('public/css/'));
+app.use('/js', 		express.static('public/js/'));
 
 // routes
 
