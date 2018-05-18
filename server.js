@@ -37,19 +37,21 @@ app.get('/', function (req, res) {
 // for db debuggery
 app.get('/db', function (req, res) {
 	console.log("showing DB results");
-	var dbresult = "";
+	
 
 	client.connect(); // connect to db
 
 	client.query('SELECT * FROM *', (err, res) => { // dump db into variable
+		var dbresult = "";
 		if (err) throw err;
 		for (let row of res.rows) {
 			dbresult += JSON.stringify(row) + "\n";
 		}
 		client.end();
+		res.send(dbresults)
 	})
 
-	res.send(dbresults); // send results to browser
+	//res.send(dbresults); // send results to browser
 });
 
 // start app on port
