@@ -1,5 +1,8 @@
 const path = require('path');
 const express = require('express');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const csprng = require('csprng');
 const { Client } = require('pg');
 
 const client = new Client({
@@ -7,10 +10,12 @@ const client = new Client({
 	ssl: true,
 });
 
-
 const app = express(); // main app object
 
 const port = process.env.PORT || 8080; // uses server env port if exists, else uses default 8080
+
+app.use(cookieParser());
+app.use(session({secret: csprng(256, 36)}));
 
 /* defining static content directories
    Eg: accessing "domain.com/views" will actually access "server_directory/public/html/"
@@ -46,8 +51,6 @@ app.get('/db', function (req, res) {
 
 	res.send(dbresults); // send results to browser
 });
-
-
 
 // start app on port
 app.listen(port, () => console.log("active on port: " + port));

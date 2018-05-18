@@ -9,7 +9,9 @@
 	},
 	"dependencies": {
 		"bootstrap": "^4.1.1",
+		"csprng": "^0.1.2",
 		"express": "^4.0.0",
+		"express-session": "^1.15.6",
 		"pg": "^7.4.3"
 	}
 }
