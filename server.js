@@ -44,7 +44,7 @@ app.use('/style', 	express.static('public/css/'));
 app.use('/js', 		express.static('public/js/'));
 
 // routes
-
+client.connect(); // connect to db
 // for homepage get requests
 app.get('/', function (req, res) {
 	console.log("Serving index.html");
@@ -53,7 +53,7 @@ app.get('/', function (req, res) {
 // for db debuggery
 app.get('/db', function (req, res) {
 	console.log("showing DB results");
-	client.connect(); // connect to db
+	
 	client.query('SELECT * FROM usertable', (err, res2) => { // dump db into variable
 		var dbresult = "";
 		if (err) throw err;
