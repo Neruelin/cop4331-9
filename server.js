@@ -63,7 +63,7 @@ app.get('/db', function (req, res) {
 		}
 		client.end();
 		console.log(dbresult);
-		res.send(dbresult).catch(console.error);
+		res.send(dbresult);
 	}).catch(console.error);
 
 	
