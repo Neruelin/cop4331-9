@@ -9,7 +9,19 @@ const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: true,
 });
+client.connect(); // connect to db
 
+	client.query('SELECT * FROM usertable', (err, res) => { // dump db into variable
+		var dbresult = "";
+		if (err) throw err;
+		console.log(res);
+		/*for (let row of res.rows) {
+			dbresult += JSON.stringify(row) + "\n";
+		}
+		client.end();
+		console.log(dbresult);
+		res.send(dbresult);*/
+	});
 // client.connect();
 
 // client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
@@ -49,7 +61,7 @@ app.get('/db', function (req, res) {
 	console.log("showing DB results");
 	
 
-	client.connect(); // connect to db
+	/*client.connect(); // connect to db
 
 	client.query('SELECT * FROM usertable', (err, res) => { // dump db into variable
 		var dbresult = "";
@@ -60,8 +72,8 @@ app.get('/db', function (req, res) {
 		}
 		client.end();
 		console.log(dbresult);
-		res.send(dbresult);*/
-	});
+		res.send(dbresult);
+	});*/
 
 	//res.send(dbresults); // send results to browser
 });
