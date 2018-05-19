@@ -11,17 +11,11 @@ const client = new Client({
 });
 client.connect(); // connect to db
 
-	client.query('SELECT * FROM usertable', (err, res) => { // dump db into variable
+	/*client.query('SELECT * FROM usertable', (err, res) => { // dump db into variable
 		var dbresult = "";
 		if (err) throw err;
 		console.log(res);
-		/*for (let row of res.rows) {
-			dbresult += JSON.stringify(row) + "\n";
-		}
-		client.end();
-		console.log(dbresult);
-		res.send(dbresult);*/
-	});
+	});*/
 // client.connect();
 
 // client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
@@ -59,7 +53,17 @@ app.get('/', function (req, res) {
 // for db debuggery
 app.get('/db', function (req, res) {
 	console.log("showing DB results");
-	
+	client.query('SELECT * FROM usertable', (err, res2) => { // dump db into variable
+		var dbresult = "";
+		if (err) throw err;
+		console.log(res2);
+		/*for (let row of res2.rows) {
+			dbresult += JSON.stringify(row) + "\n";
+		}
+		client.end();
+		console.log(dbresult);
+		res.send(dbresult);*/
+	});
 
 	/*client.connect(); // connect to db
 
