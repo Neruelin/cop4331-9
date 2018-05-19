@@ -57,12 +57,12 @@ app.get('/db', function (req, res) {
 		var dbresult = "";
 		if (err) throw err;
 		console.log(res2);
-		/*for (let row of res2.rows) {
+		for (let row of res2.rows) {
 			dbresult += JSON.stringify(row) + "\n";
 		}
 		client.end();
 		console.log(dbresult);
-		res.send(dbresult);*/
+		res.send(dbresult);
 	});
 
 	/*client.connect(); // connect to db
