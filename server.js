@@ -9,7 +9,7 @@ const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: true,
 });
-client.connect(); // connect to db
+
 
 	/*client.query('SELECT * FROM usertable', (err, res) => { // dump db into variable
 		var dbresult = "";
@@ -53,6 +53,7 @@ app.get('/', function (req, res) {
 // for db debuggery
 app.get('/db', function (req, res) {
 	console.log("showing DB results");
+	client.connect(); // connect to db
 	client.query('SELECT * FROM usertable', (err, res2) => { // dump db into variable
 		var dbresult = "";
 		if (err) throw err;
@@ -65,21 +66,7 @@ app.get('/db', function (req, res) {
 		res.send(dbresult);
 	});
 
-	/*client.connect(); // connect to db
-
-	client.query('SELECT * FROM usertable', (err, res) => { // dump db into variable
-		var dbresult = "";
-		if (err) throw err;
-		console.log(res);
-		/*for (let row of res.rows) {
-			dbresult += JSON.stringify(row) + "\n";
-		}
-		client.end();
-		console.log(dbresult);
-		res.send(dbresult);
-	});*/
-
-	//res.send(dbresults); // send results to browser
+	
 });
 
 // start app on port
