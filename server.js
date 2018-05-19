@@ -48,7 +48,7 @@ app.use('/js', 		express.static('public/js/'));
 // for homepage get requests
 app.get('/', function (req, res) {
 	console.log("Serving index.html");
-	res.sendFile(__dirname + '/public/html/index.html').catch(console.error);
+	res.sendFile(__dirname + '/public/html/index.html');
 });
 // for db debuggery
 app.get('/db', function (req, res) {
@@ -64,7 +64,7 @@ app.get('/db', function (req, res) {
 		client.end();
 		console.log(dbresult);
 		res.send(dbresult);
-	}).catch(console.error);
+	});
 
 	
 });
