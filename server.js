@@ -41,7 +41,7 @@ app.get('/db', function (req, res) {
 
 	client.connect(); // connect to db
 
-	client.query('SELECT * FROM *', (err, res) => { // dump db into variable
+	client.query('SELECT * FROM usertable', (err, res) => { // dump db into variable
 		var dbresult = "";
 		if (err) throw err;
 		for (let row of res.rows) {
