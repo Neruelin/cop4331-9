@@ -54,12 +54,13 @@ app.get('/db', function (req, res) {
 	client.query('SELECT * FROM usertable', (err, res) => { // dump db into variable
 		var dbresult = "";
 		if (err) throw err;
-		for (let row of res.rows) {
+		console.log(res);
+		/*for (let row of res.rows) {
 			dbresult += JSON.stringify(row) + "\n";
 		}
 		client.end();
 		console.log(dbresult);
-		res.send(dbresult);
+		res.send(dbresult);*/
 	});
 
 	//res.send(dbresults); // send results to browser
