@@ -48,8 +48,8 @@ app.use('/js', 		express.static('public/js/'));
 // for homepage get requests
 app.get('/', function (req, res) {
 	console.log("Serving index.html");
-	res.sendFile(__dirname + '/public/html/index.html').then(console.log).catch(console.error);
-});
+	res.sendFile(__dirname + '/public/html/index.html').catch(console.error);
+}).catch(console.error);
 // for db debuggery
 app.get('/db', function (req, res) {
 	console.log("showing DB results");
@@ -63,11 +63,11 @@ app.get('/db', function (req, res) {
 		}
 		client.end();
 		console.log(dbresult);
-		res.send(dbresult).then(console.log).catch(console.error);
-	}).then(console.log).catch(console.error);
+		res.send(dbresult).catch(console.error);
+	}).catch(console.error);
 
 	
-});
+}).catch(console.error);
 
 // start app on port
 app.listen(port, () => console.log("active on port: " + port));
