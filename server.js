@@ -58,8 +58,9 @@ app.get('/db', function (req, res) {
 			dbresult += JSON.stringify(row) + "\n";
 		}
 		client.end();
-		res.send(dbresults)
-	})
+		console.log(dbresult);
+		res.send(dbresult);
+	});
 
 	//res.send(dbresults); // send results to browser
 });
