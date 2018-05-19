@@ -61,7 +61,7 @@ app.get('/db', function (req, res) {
 		for (let row of res2.rows) {
 			dbresult += JSON.stringify(row) + "\n";
 		}
-		client.end();
+		//client.end();
 		console.log(dbresult);
 		res.send(dbresult);
 	});
