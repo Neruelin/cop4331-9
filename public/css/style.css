@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400');
 
 .hero{
-     background: url("/Users/Chico55/Desktop/SCHOOL/UCF/UCF Summer 2018/Processes for Object-Oriented Software/Project01/Assets/Home.jpg") no-repeat;
+     background: url("../media/Home.jpg") no-repeat;
      background-size: 100%;
      width: 100vw;
      height: 100vh;
@@ -77,6 +77,57 @@
 
 }
 
+#search{
+     width: 66%;
+}
+
+#search-btn{
+     width: 34%;
+}
+
+.search-elements{
+     margin-right: 5px;
+     box-shadow: none;
+}
+
+.search-flexbox{
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+
+
+}
+.info{
+
+     font-family: 'Source Sans Pro', sans-serif;
+     font-weight: 200;
+     color: white;
+}
+
+#name{
+     padding-bottom: 5px;
+     border-bottom: solid;
+     border-color: white;
+     border-width: 1px;
+}
+
+.contacts{
+     display: none;
+     flex-direction: column;
+     padding-left: 10px;
+     padding-right: 10px;
+     width: 33vw;
+     height: 66vh;
+     overflow: hidden;
+     border-radius: 10px;
+     -webkit-backdrop-filter: blur(5px);
+     -moz-backdrop-filter: blur(5px);
+     backdrop-filter: blur(5px);
+     background-color: #555555AA;
+
+
+
+}
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
       font-family: 'Source Sans Pro', sans-serif;
