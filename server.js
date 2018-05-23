@@ -47,8 +47,8 @@ app.use('/js', 		express.static('public/js/'));
 client.connect(); // connect to db
 // for homepage get requests
 app.get('/', function (req, res) {
-	console.log("Serving index.html");
-	res.sendFile(__dirname + '/public/html/index.html');
+	console.log("Serving login.html");
+	res.sendFile(__dirname + '/public/html/login.html');
 });
 // for db debuggery
 app.get('/db', function (req, res) {
