@@ -70,8 +70,8 @@ app.get('/db', function (req, res) {
 });
 
 app.get('/dashboard', function (req, res) {
-	console.log("Serving login.html");
-	res.sendFile(__dirname + '/public/html/login.html');
+	console.log("Serving dashboard.html");
+	res.sendFile(__dirname + '/public/html/dashboard.html');
 });
 
 // start app on port
