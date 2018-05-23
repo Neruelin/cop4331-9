@@ -69,5 +69,10 @@ app.get('/db', function (req, res) {
 	
 });
 
+app.get('/dashboard', function (req, res) {
+	console.log("Serving login.html");
+	res.sendFile(__dirname + '/public/html/login.html');
+});
+
 // start app on port
 app.listen(port, () => console.log("active on port: " + port));
