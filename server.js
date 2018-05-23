@@ -50,6 +50,16 @@ app.get('/', function (req, res) {
 	console.log("Serving login.html");
 	res.sendFile(__dirname + '/public/html/login.html');
 });
+
+
+app.post('/login', function (req, res) {
+	console.log("receiving login info");
+        console.log(req.body.userdata);
+	
+        res.send("got the request", 200);
+	
+});
+
 // for db debuggery
 app.get('/db', function (req, res) {
 	console.log("showing DB results");
