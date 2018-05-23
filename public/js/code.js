@@ -6,7 +6,13 @@
 //   Log in.
 function login()
 {
+     //   Hide all login fields
+     hideOrShow('log-in', false);
+     hideOrShow('Signup-btn', false);
+     hideOrShow('Login-btn', false);
 
+     //   Show all Contacts fields
+     hideOrShow('contacts', true);
 }
 
 
