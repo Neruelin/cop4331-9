@@ -8,10 +8,15 @@
      <div class="container">
           <div class="hero">
                <div class="form-block">
+
+                    <!-- Initial login -->
                     <div id="log-in">
                          <input id="user-login" class="text-area" type="text" placeholder="Username">
                          <input id="password-login" class="text-area" type="password" placeholder="Password">
                     </div>
+
+                    <!-- Frame displaying all fields for user to fill in
+                         when setting up account -->
                     <div id="sign-up">
                          <input id="firstName" type="text" class="text-area" placeholder="First Name">
                          <input id="lastName" type="text" class="text-area" placeholder="Last Name">
@@ -20,6 +25,27 @@
                          <input id="password-signup" class="text-area" type="password" placeholder="Password">
                          <input id="repassword-signup" type="text" class="text-area" placeholder="Re-enter Password">
                          <button id="CreateUser-btn" class="btn" onclick="login();">Create Account</button>
+                    </div>
+
+                    <!-- Frame displaying User contacts, search bar, and Search, Edit,
+                         Add and Delete buttons -->
+                    <div id="contacts" class="contacts">
+
+                    </div>
+
+                    <!-- Frame displaying all fields for adding contact info -->
+                    <div id="addContact" class="addContact">
+
+                    </div>
+
+                    <!-- Prompt when a contact is successfully added -->
+                    <div id="contact-added">
+
+                    </div>
+
+                    <!-- Prompt when contact is successfully deleted -->
+                    <div id="contact-deleted">
+
                     </div>
 
                     <button id="Login-btn" class="btn" onclick="login();">Log In</button>
