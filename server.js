@@ -40,7 +40,7 @@ app.use(session({secret: csprng(256, 36)}));
 app.use('/', 		express.static('public/'));
 app.use('/media', 	express.static('public/media/'));
 app.use('/html', 	express.static('public/html/'));
-app.use('/style', 	express.static('public/css/'));
+app.use('/css', 	express.static('public/css/'));
 app.use('/js', 		express.static('public/js/'));
 
 // routes
