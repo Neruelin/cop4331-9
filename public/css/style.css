@@ -10,6 +10,7 @@
      align-items: center;
 
 }
+
 .hero-img{
      width: 100vw;
      margin: 0px;
@@ -37,6 +38,9 @@
      color: #555555;
 }
 .btn{
+     display: flex;
+     justify-content: center;
+     align-items: center;
      border-radius: 10px;
      background-color: #00D8FF;
      align-self: center;
@@ -52,6 +56,10 @@
      font-size: 100%;
      color: white;
 }
+#log-in{
+     display: flex;
+     flex-direction: column;
+}
 
 #sign-up{
      display: none;
@@ -60,6 +68,8 @@
 }
 
 .sign-up-btn {
+     display: flex;
+     justify-content: center;
      border-style: solid;
      align-self: center;
      border-width: 1px;
@@ -102,6 +112,26 @@
      font-family: 'Source Sans Pro', sans-serif;
      font-weight: 200;
      color: white;
+     padding-top: 5px;
+     padding-bottom: 5px;
+     margin-bottom: 0px;
+}
+h1.info{
+     font-size: 60px;
+}
+h3.info{
+     padding-top: 5px;
+     margin-top: 0px;
+     font-size: 50px;
+     padding-bottom: 5px;
+
+}
+p.info{
+     font-size: 30px;
+     margin-top: 0px;
+     padding-top: 0px;
+     margin-right: 20px;
+     margin-left: 20px;
 }
 
 #name{
@@ -109,6 +139,7 @@
      border-bottom: solid;
      border-color: white;
      border-width: 1px;
+
 }
 
 .contacts{
@@ -127,6 +158,17 @@
 
 
 
+}
+.phone-flex-parent{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+}
+.phone-flex-child{
+     margin-top: 5px;
+     padding: none;
+     display: flex;
+     flex-direction: row;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
