@@ -24,7 +24,7 @@
                          <input id="user-signup" class="text-area" type="text" placeholder="Username">
                          <input id="password-signup" class="text-area" type="password" placeholder="Password">
                          <input id="repassword-signup" type="text" class="text-area" placeholder="Re-enter Password">
-                         <button id="CreateUser-btn" class="btn" onclick="login();">Create Account</button>
+                         <button id="CreateUser-btn" class="btn" onclick="createAccount();">Create Account</button>
                     </div>
 
                     <!-- Frame displaying User contacts, search bar, and Search, Edit,
@@ -34,8 +34,23 @@
                               <input id="search" type="text" class="text-area search-elements" placeholder="Search">
                               <button id="search-btn" class="btn search-elements" onclick="search();">Search</button>
                          </div>
+                         <div class="contact-names">
 
-                         <h2 id="Name" class="info">Tyler Duncan</h2>
+                         </div>
+                         <div class="contact-info-flex">
+                              <h1 id="Name" class="info">Tyler Duncan</h1>
+                              <div class="phone-flex-parent">
+                                   <div class="phone-flex-child">
+                                        <h3 id="Phone" class="info">Phone</h3>
+                                   </div>
+                                   <div class="phone-flex-child">
+                                        <p id="Phone-type" class="info">Home:</p>
+                                        <p id="Phone-number" class="info">(407) 555-1234</p>
+                                   </div>
+
+                              </div>
+                         </div>
+
 
                     </div>
 
