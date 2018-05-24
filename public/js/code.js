@@ -51,7 +51,7 @@ function createAccount()
      fetch('https://cop4331-9.herokuapp.com/signup')
      .then(function(response))
      {
-          console.log(response);
+          return response.json();
      }
      //   Hide all Sign up fields
      hideOrShow('sign-up', false);
