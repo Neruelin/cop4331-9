@@ -48,12 +48,22 @@ function signup()
 
 function createAccount()
 {
-     fetch('https://cop4331-9.herokuapp.com/signup')
-     .then(function(response){
-          return response.json();
-     })
-     .then(function(data){
+     fetch('https://cop4331-9.herokuapp.com/signup', {
+          method: 'POST',
+          headers: new headers();
+          body: JSON.stringify({
+          firstname: document.getElementById('firstName').value;
+          lastname: document.getElementById('firstName').value;
+          email: document.getElementById('email').value;
+          username: document.getElementById('user-signup').value;
+          })
+     } )
+     .then(response => response.json())
+     .then(data => {
           console.log(data);
+     })
+     .catch((error) => {
+          console.log('Something went wrong! ( In createAccount(); )', error)
      });
      //   Hide all Sign up fields
      hideOrShow('sign-up', false);
