@@ -8,6 +8,10 @@ function login()
 {
      var url_signup = 'https://cop4331-9.herokuapp.com/login';
 
+     let userdata = {
+          username: document.getElementById('user-signup').value,
+     }
+
      let fetchdata = {
           method: 'POST',
           headers: new Headers(),
