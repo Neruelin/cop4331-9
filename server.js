@@ -54,7 +54,7 @@ app.get('/', function (req, res) {
 
 app.post('/login', function (req, res) {
 	console.log("receiving login info");
-    console.log(JSON.parse(req.body.userdata));
+    console.log(req.body);
 	req.session.loggedin = true;
     res.send("got the request", 200);
 	
