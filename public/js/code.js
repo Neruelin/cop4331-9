@@ -10,7 +10,8 @@ function login()
      var user = document.getElementById('user-login').value;
 
      let userdata = {
-          username: document.getElementById('user-login').value
+          username: document.getElementById('user-login').value,
+          password: document.getElementById('password-login').value
      }
 
      console.log(JSON.stringify(userdata));
