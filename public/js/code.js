@@ -6,6 +6,22 @@ const urlBase = 'https://cop4331-9.herokuapp.com'
 //   Log in.
 function login()
 {
+     var url_signup = 'https://cop4331-9.herokuapp.com/login';
+
+     let fetchdata = {
+          method: 'POST',
+          headers: new Headers(),
+          body: JSON.stringify(userdata)
+     }
+
+     fetch(url_signup, fetchdata)
+     .then(response => response.json())
+     .then(data => {
+          console.log(data);
+     })
+     .catch((error) => {
+          console.log('Something went wrong! ( In createAccount(); )', error)
+     });
      // var login = document.getElementById("user-login").value;
 	// var password = document.getElementById("password-login").value;
      // var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
@@ -57,7 +73,7 @@ function createAccount()
           firstname: document.getElementById('firstName').value,
           lastname: document.getElementById('firstName').value,
           email: document.getElementById('email').value,
-          sername: document.getElementById('user-signup').value,
+          username: document.getElementById('user-signup').value,
      }
 
      //   Initialize fetchdata for posting.
@@ -94,9 +110,11 @@ function createAccount()
 }
 
 
-//   Custom Functions.
+//        ++===============================================++
+//        ||                 Helper Functions              ||
+//        ++===============================================++
 
-//
+//   Turn elements display/visiblity on/off.  (Credit Professor Leinecker)
 function show( elementId, showState )
 {
 	var vis = "visible";
