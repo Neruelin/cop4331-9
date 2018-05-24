@@ -31,7 +31,7 @@ function login()
      // var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
 	// var url = urlBase + '/login';
 
-     fetch('https://cop4331-9.herokuapp.com/login');
+     // fetch('https://cop4331-9.herokuapp.com/login');
 
      //   Hide all login fields
      show('log-in', false);
