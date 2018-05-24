@@ -23,7 +23,9 @@ function login()
      }
 
      fetch(url_signup, fetchdata)
-     .then(response => console.log(response))
+     .then(response => {
+          console.log(response)
+     })
      .then(data => {
           console.log(data);
      })
