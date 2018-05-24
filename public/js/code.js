@@ -6,7 +6,7 @@ const urlBase = 'https://cop4331-9.herokuapp.com'
 //   Log in.
 function login()
 {
-     var url_signup = 'https://cop4331-9.herokuapp.com/login';
+     var url_login = 'https://cop4331-9.herokuapp.com/login';
      var user = document.getElementById('user-login').value;
 
      let userdata = {
@@ -22,7 +22,7 @@ function login()
           body: userdata
      }
 
-     fetch(url_signup, fetchdata)
+     fetch(url_login, fetchdata)
      .then(response => {
           console.log(response)
      })
