@@ -48,7 +48,7 @@ function signup()
 
 function createAccount()
 {
-     let userdata = {
+     var userdata = {
           firstname: document.getElementById('firstName').value,
           lastname: document.getElementById('firstName').value,
           email: document.getElementById('email').value,
