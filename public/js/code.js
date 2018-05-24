@@ -50,7 +50,7 @@ function createAccount()
 {
      fetch('https://cop4331-9.herokuapp.com/signup', {
           method: 'POST',
-          headers: new Headers();
+          headers: new Headers()
           body: JSON.stringify({
                     firstname: document.getElementById('firstName').value;
                     lastname: document.getElementById('firstName').value;
