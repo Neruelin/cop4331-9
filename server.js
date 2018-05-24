@@ -54,10 +54,9 @@ app.get('/', function (req, res) {
 
 app.post('/login', function (req, res) {
 	console.log("receiving login info");
-        console.log(req.body.username);
-        console.log(req.body.password);
-	
-        res.send("got the request", 200);
+    console.log(JSON.parse(req.body.userdata));
+	req.session.loggedin = true;
+    res.send("got the request", 200);
 	
 });
 
@@ -65,7 +64,7 @@ app.post('/login', function (req, res) {
 app.get('/db', function (req, res) {
 	console.log("showing DB results");
 	
-	client.query('SELECT * FROM usertable', (err, res2) => { // dump db into variable
+	client.query('SELECT * FROM users', (err, res2) => { // dump db into variable
 		var dbresult = "";
 		if (err) throw err;
 		console.log(res2);
@@ -81,8 +80,12 @@ app.get('/db', function (req, res) {
 });
 
 app.get('/dashboard', function (req, res) {
-	console.log("Serving dashboard.html");
-	res.sendFile(__dirname + '/public/html/dashboard.html');
+	if (req.session.loggedin) {
+		console.log("Serving dashboard.html");
+		res.sendFile(__dirname + '/public/html/dashboard.html');
+	} else {
+		res.redirect("/login");
+	}
 });
 
 // start app on port
