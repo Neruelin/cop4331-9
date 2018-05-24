@@ -7,10 +7,10 @@ const urlBase = 'https://cop4331-9.herokuapp.com'
 function login()
 {
      var url_signup = 'https://cop4331-9.herokuapp.com/login';
-     var user = document.getElementById('user-signup').value;
+     var user = document.getElementById('user-login').value;
 
      let userdata = {
-          username: 'Tyler'
+          username: document.getElementById('user-login').value
      }
 
      console.log(JSON.stringify(userdata));
