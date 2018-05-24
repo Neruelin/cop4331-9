@@ -1,11 +1,33 @@
 //   Initialize connection to server through URL.
-
+const urlBase = 'https://cop4331-9.herokuapp.com'
 
 
 
 //   Log in.
 function login()
 {
+     var login = document.getElementById("user-login").value;
+	var password = document.getElementById("password-login").value;
+     var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
+	var url = urlBase + '/login';
+
+     let data = {
+          name: login,
+          pw: pasword
+     }
+
+     let fetchData = {
+          method: 'POST',
+          body: data,
+          headers: new Headers()
+     }
+
+     fetch(url, fetchData)
+     .then(function() {
+          // Handle response you get from the server
+     });
+
+     var xhr = new XMLHttpRequest();
      //   Hide all login fields
      hideOrShow('log-in', false);
      hideOrShow('Signup-btn', false);
@@ -55,6 +77,13 @@ function createAccount()
           var userName = document.getElementById("user-signup").value;
      }
 
+     //   Hide all Sign up fields
+     hideOrShow('sign-up', false);
+
+     //   Show all Sign up fields
+     hideOrShow('log-in', true);
+     hideOrShow('Signup-btn', true);
+     hideOrShow('Login-btn', true);
 }
 
 
