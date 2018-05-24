@@ -49,10 +49,10 @@ function signup()
 function createAccount()
 {
      let userdata = {
-          firstname: document.getElementById('firstName').value;
-          lastname: document.getElementById('firstName').value;
-          email: document.getElementById('email').value;
-          sername: document.getElementById('user-signup').value;
+          firstname: document.getElementById('firstName').value,
+          lastname: document.getElementById('firstName').value,
+          email: document.getElementById('email').value,
+          sername: document.getElementById('user-signup').value,
      }
      fetch('https://cop4331-9.herokuapp.com/signup', {
           method: 'POST',
