@@ -40,7 +40,7 @@ app.use(session({secret: csprng(256, 36)}));
 app.use('/', 		express.static('public/'));
 app.use('/media', 	express.static('public/media/'));
 app.use('/html', 	express.static('public/html/'));
-app.use('/style', 	express.static('public/css/'));
+app.use('/css', 	express.static('public/css/'));
 app.use('/js', 		express.static('public/js/'));
 
 // routes
@@ -50,11 +50,21 @@ app.get('/', function (req, res) {
 	console.log("Serving login.html");
 	res.sendFile(__dirname + '/public/html/login.html');
 });
+
+
+app.post('/login', function (req, res) {
+	console.log("receiving login info");
+    console.log(req.body);
+	req.session.loggedin = true;
+    res.send("got the request", 200);
+	
+});
+
 // for db debuggery
 app.get('/db', function (req, res) {
 	console.log("showing DB results");
 	
-	client.query('SELECT * FROM usertable', (err, res2) => { // dump db into variable
+	client.query('SELECT * FROM users', (err, res2) => { // dump db into variable
 		var dbresult = "";
 		if (err) throw err;
 		console.log(res2);
@@ -67,6 +77,15 @@ app.get('/db', function (req, res) {
 	});
 
 	
+});
+
+app.get('/dashboard', function (req, res) {
+	if (req.session.loggedin) {
+		console.log("Serving dashboard.html");
+		res.sendFile(__dirname + '/public/html/dashboard.html');
+	} else {
+		res.redirect("/login");
+	}
 });
 
 // start app on port
