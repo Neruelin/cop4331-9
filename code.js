@@ -18,7 +18,7 @@ function login()
           body: JSON.stringify(userdata)
      }
 
-     fetch(url_signup, fetchdata)
+     fetch(url_signup, fetchdata);
      .then(response => console.log(response))
      .then(data => {
           console.log(data);
