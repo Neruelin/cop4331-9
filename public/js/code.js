@@ -22,7 +22,7 @@ function login()
           body: userdata
      }
 
-     fetch(url_login, fetchdata);
+     fetch(url_login, fetchdata)
      .then(response => {
           console.log(response)
      })
