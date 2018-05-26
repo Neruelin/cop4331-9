@@ -57,7 +57,7 @@ app.post('/login', function (req, res) {
     console.log(req.body);
 	req.session.loggedin = true;
     res.send("got the request", 200);
-	
+res.sendFile(__dirname + '/public/html/dashboard.html');
 });
 
 // for db debuggery
