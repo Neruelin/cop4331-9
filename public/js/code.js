@@ -40,12 +40,12 @@ function login()
      // fetch('https://cop4331-9.herokuapp.com/login');
 
      //   Hide all login fields
-     show('log-in', false);
-     show('Signup-btn', false);
-     show('Login-btn', false);
+     //show('log-in', false);
+     //show('Signup-btn', false);
+     //show('Login-btn', false);
 
      //   Show all Contacts fields
-     show('contacts', true);
+     //show('contacts', true);
 }
 
 
