@@ -1,25 +1,37 @@
 //   Initialize connection to server through URL.
 const urlBase = 'https://cop4331-9.herokuapp.com'
 
+/*function debug() {
+     data = {"username": "tyler"};
+
+     reqOptions = {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(data)
+     }
+
+     fetch("/login", reqOptions).then(function(res) {console.log(res)});
+     //fetch("/debug", {method: 'POST', body: {data: "words data time space spaghetti"}});
+}*/
 
 
 //   Log in.
 function login()
 {
-     var url_login = 'https://cop4331-9.herokuapp.com/login';
+     var url_login = "/login" || 'https://cop4331-9.herokuapp.com/login';
      var user = document.getElementById('user-login').value;
 
      let userdata = {
-          username: document.getElementById('user-login').value,
-          password: document.getElementById('password-login').value
+          "username": document.getElementById('user-login').value,
+          "password": document.getElementById('password-login').value
      }
 
      console.log(JSON.stringify(userdata));
 
      let fetchdata = {
           method: 'POST',
-          headers: new Headers(),
-          body: userdata
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(userdata)
      }
 
      fetch(url_login, fetchdata)

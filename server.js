@@ -1,3 +1,4 @@
+const bodyparser = require('body-parser');
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
@@ -13,7 +14,7 @@ const client = new Client({
 
 	/*client.query('SELECT * FROM usertable', (err, res) => { // dump db into variable
 		var dbresult = "";
-		if (err) throw err;
+		if (err) throw err;		
 		console.log(res);
 	});*/
 // client.connect();
@@ -29,7 +30,8 @@ const client = new Client({
 const app = express(); // main app object
 
 const port = process.env.PORT || 8080; // uses server env port if exists, else uses default 8080
-
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(session({secret: csprng(256, 36)}));
 
@@ -54,7 +56,9 @@ app.get('/', function (req, res) {
 
 app.post('/login', function (req, res) {
 	console.log("receiving login info");
-    console.log(req.body);
+	console.log(req.body);
+    console.log("Username: " + req.body.username);
+    console.log("Password: " + req.body.password);
 	req.session.loggedin = true;
     res.send("got the request", 200);
 	
