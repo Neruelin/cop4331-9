@@ -22,8 +22,8 @@ function login()
      var user = document.getElementById('user-login').value;
 
      let userdata = {
-          "username": document.getElementById('user-login').value,
-          "password": document.getElementById('password-login').value
+          username: document.getElementById('user-login').value || "default",
+          password: document.getElementById('password-login').value || "defualt"
      }
 
      console.log(JSON.stringify(userdata));
