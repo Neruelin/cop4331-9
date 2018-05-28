@@ -16,22 +16,18 @@ function login()
 
      console.log(JSON.stringify(userdata));
 
-     let fetchdata = {
-          method: 'POST',
-          headers: { type: 'application/json' },
-          body: JSON.stringify(userdata)
-     }
-
-     fetch(url_login, fetchdata)
-     .then(response => {
-          console.log(response)
-     })
-     .then(data => {
-          console.log(data);
-     })
-     .catch((error) => {
-          console.log('Something went wrong! ( In createAccount(); )', error)
+     $.post(url_login, userdata, function (res, status) {
+          console.log(status);
      });
+     // .then(response => {
+     //      console.log(response)
+     // })
+     // .then(data => {
+     //      console.log(data);
+     // })
+     // .catch((error) => {
+     //      console.log('Something went wrong! ( In createAccount(); )', error)
+     // });
      // var login = document.getElementById("user-login").value;
 	// var password = document.getElementById("password-login").value;
      // var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
