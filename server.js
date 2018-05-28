@@ -1,4 +1,5 @@
 const path = require('path');
+const bodyparser = require('body-parser');
 const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -29,7 +30,8 @@ const client = new Client({
 const app = express(); // main app object
 
 const port = process.env.PORT || 8080; // uses server env port if exists, else uses default 8080
-
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: true}))
 app.use(cookieParser());
 app.use(session({secret: csprng(256, 36)}));
 

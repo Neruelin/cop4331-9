@@ -18,7 +18,7 @@ function login()
 
      let fetchdata = {
           method: 'POST',
-          headers: new Headers(),
+          headers: { type: 'application/json' },
           body: JSON.stringify(userdata)
      }
 
