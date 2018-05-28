@@ -57,7 +57,7 @@ app.post('/login', function (req, res) {
 	console.log("receiving login info:");
     console.log(req.body);
 	req.session.loggedin = true;
-	let query = 'SELECT * FROM users WHERE username=' + req.body.userdata.username +';';
+	let query = 'SELECT * FROM users WHERE username=' + req.body.username +';';
 	client.query(query, (err, res) => {
 		let result = "";
 		console.log(res.rows);
