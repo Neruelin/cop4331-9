@@ -19,7 +19,7 @@ function login()
      let fetchdata = {
           method: 'POST',
           headers: new Headers(),
-          body: userdata
+          body: JSON.stringify(userdata)
      }
 
      fetch(url_login, fetchdata)

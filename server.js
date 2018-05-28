@@ -51,13 +51,36 @@ app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/public/html/login.html');
 });
 
-
 app.post('/login', function (req, res) {
-	console.log("receiving login info");
+	console.log("receiving login info:");
     console.log(req.body);
 	req.session.loggedin = true;
+	let query = 'SELECT * FROM users WHERE username=' + req.body.username +';';
+	client.query(query, (err, res) => {
+		let result = "";
+		console.log(res.rows);
+	});
+
     res.send("got the request", 200);
 //res.sendFile(__dirname + '/public/html/dashboard.html');
+});
+
+app.post('/signup', function (req, res) {
+	console.log("recieving signup info:");
+	console.log(req.body);
+	res.send("got signup", 200);
+});
+
+app.post('/add', function (req, res) {
+	console.log("recieving add info:");
+	console.log(req.body);
+	res.send("got add", 200);
+});
+
+app.post("/contacts", function (req, res) {
+	console.log("recieving contacts info:")
+	console.log(req.body);
+	res.send("got contact request", 200);
 });
 
 // for db debuggery
