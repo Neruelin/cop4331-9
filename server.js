@@ -98,13 +98,17 @@ app.post('/login', function (req, response) {
 		let query = 'SELECT * FROM users WHERE username=\'' + req.body.username +'\';';
 		client.query(query, (err, res) => {
 			if (res.rows.length > 0) {
-				if (req.body.username == res.rows[0].username) {
-					req.session.loggedin = true;
-					response.redirect('/dashboard');
-					return;
-				}
+				bcrypt.compare(req.body.password, res.rows[0].passwordHash, (err, same) => {
+					if (same) {
+						req.session.loggedin = true;
+						response.redirect('/dashboard');
+					} else {
+						response.status(401).end();
+					}
+				});
+			} else {
+				response.status(400).end();
 			}
-			response.status(401).end();
 		});
     }
 //res.sendFile(__dirname + '/public/html/dashboard.html');
