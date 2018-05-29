@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt");
 const path = require('path');
 const bodyparser = require('body-parser');
 const express = require('express');
@@ -10,6 +11,42 @@ const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: true,
 });
+
+const saltRounds = 10;
+
+
+
+// assumes validated input, 
+function saltnhashnstore (userdata) {
+	let result = {salt: undefined, hashword: undefined};
+	bcrypt.getSalt(saltRounds, (err, salt) => {
+		result.salt = salt;
+		bcrypt.hash(userdata.password, salt, (err, hash) => {
+			result.hash = hash;
+			let query= "INSERT INTO Users (username, passwordHash, passwordSalt, firstname, lastname, email) VALUES ($1, $2, $3, $4, $5, $6);";
+			let vals = [userdata.username, hash, salt, userdata.firstname, userdata.lastname, userdata.email]
+			client.query(text, vals, (err, res) => {   
+				if (err) {
+					console.log(err.stack);
+				} else {
+					console.log(res.rows[0]);
+				}
+			})
+		});
+	});
+}
+
+
+// Returns true if a prohibited character is detected, returns false otherwise
+function checkInput(inputobj) {
+	let prohibitedChars = ['\"', '\'', ';']
+	for (let key in inputobj) {
+		for (let char in prohibitedChars) {
+			if (inputobj[key].indexof(char) > -1) {
+				return true;
+	}}}
+	return false;
+}
 
 
 	/*client.query('SELECT * FROM usertable', (err, res) => { // dump db into variable
@@ -56,17 +93,22 @@ app.get('/', function (req, res) {
 app.post('/login', function (req, response) {
 	console.log("receiving login info:");
     console.log(req.body);
-	let query = 'SELECT * FROM users WHERE username=\'' + req.body.username +'\';';
-	client.query(query, (err, res) => {
-		if (res.rows.length > 0) {
-			if (req.body.username == res.rows[0].username) {
-				req.session.loggedin = true;
-				response.redirect('/dashboard');
-				return;
+    if (checkInput(req.body)) {
+    	response.status(400).end();
+    	return
+    } else {	
+		let query = 'SELECT * FROM users WHERE username=\'' + req.body.username +'\';';
+		client.query(query, (err, res) => {
+			if (res.rows.length > 0) {
+				if (req.body.username == res.rows[0].username) {
+					req.session.loggedin = true;
+					response.redirect('/dashboard');
+					return;
+				}
 			}
-		}
-		response.status(401).end();
-	});
+			response.status(401).end();
+		});
+    }
 //res.sendFile(__dirname + '/public/html/dashboard.html');
 });
 
