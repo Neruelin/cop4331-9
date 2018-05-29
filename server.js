@@ -124,7 +124,7 @@ app.post('/signup', function (req, res) {
     	 req.body.lastname.length > 50 ||
     	 req.body.email.length > 50 ||
     	 checkInput(req.body)) {
-		response.status(400).end();
+		res.status(400).end();
 		return;
 	} else {
 		saltnhashnstore(req.body);
