@@ -44,6 +44,7 @@ function login()
      }
 }
 
+//   Display new contact fields to user to fill in.
 function createContact()
 {
      show('contact-info-flex', true);
@@ -55,12 +56,19 @@ function displayContact(userId)
 
 }
 
-//
+//   Edit Contact Info.
 function editContact()
 {
 
 }
 
+//   Delete Contact.
+function deleteContact()
+{
+
+}
+
+//   Add new Contact Info
 function addContact()
 {
      var url_add = 'https://cop4331-9.herokuapp.com/add';
@@ -92,13 +100,11 @@ function addContact()
 
 }
 
+//   Sign out.
+function signOut()
+{
 
-
-//   Log out.
-
-
-
-
+}
 
 //   Sign up.
 function signup()
