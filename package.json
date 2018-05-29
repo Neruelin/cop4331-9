@@ -8,6 +8,7 @@
 		"url": "https://github.com/Neruelin/cop4331-9.git"
 	},
 	"dependencies": {
+		"bcrypt": "^2.0.1",
 		"bootstrap": "^4.1.1",
 		"cookie-parser": "^1.4.3",
 		"csprng": "^0.1.2",

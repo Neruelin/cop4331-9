@@ -93,6 +93,10 @@ function createAccount()
           username: document.getElementById('user-signup').value,
      }
 
+     $.post("/signup", userdata, function (res, status) {
+          console.log(status);
+     })
+
      //   Initialize fetchdata for posting.
      let fetchdata = {
           method: 'POST',
