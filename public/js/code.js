@@ -2,7 +2,7 @@
 const urlBase = 'https://cop4331-9.herokuapp.com'
 
 function displayErr () {
-     if ($("#error").style.display == none){
+     if ($("#error").css("display") == "none"){
           $("#error").slideToggle();         
      }
 }
