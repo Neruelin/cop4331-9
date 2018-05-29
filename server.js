@@ -62,6 +62,7 @@ app.post('/login', function (req, res) {
 	client.query(query, (err, res) => {
 		let result = "";
 		console.log(res.rows);
+		console.log(req.body);
 	});
 	console.log("end of query");
     res.send("got the request", 200);
