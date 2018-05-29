@@ -53,19 +53,21 @@ app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/public/html/login.html');
 });
 
-app.post('/login', function (req, res) {
+app.post('/login', function (req, response) {
 	console.log("receiving login info:");
     console.log(req.body);
-	req.session.loggedin = true;
 	let query = 'SELECT * FROM users WHERE username=\'' + req.body.username +'\';';
 	//console.log("Query :" + query);
 	client.query(query, (err, res) => {
 		let result = "";
 		console.log(res.rows);
-		console.log(req.body);
+		if (req.body.username == res.rows[0].username) {
+			req.session.loggedin = true;
+			response.redirect('/dashboard');
+			return
+		}
+		res.status(401).end();
 	});
-	console.log("end of query");
-    res.send("got the request", 200);
 //res.sendFile(__dirname + '/public/html/dashboard.html');
 });
 
