@@ -127,7 +127,7 @@ app.post('/signup', function (req, res) {
 		response.status(400).end();
 		return;
 	} else {
-		saltnhashnstore(userdata);
+		saltnhashnstore(req.body);
 		res.send("got signup", 200);
 	}
 });
