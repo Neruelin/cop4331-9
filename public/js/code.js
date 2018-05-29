@@ -26,6 +26,7 @@ function login()
      console.log(JSON.stringify(userdata));
 
      $.post(url_login, userdata, function (res, status) {
+          console.log(status);
           if (status != "success") {
                displayErr();
                return;
