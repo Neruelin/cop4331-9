@@ -36,10 +36,9 @@ function login()
      {
           //   Hide all login fields
           show('log-in', false);
-          show('Signup-btn', false);
-          show('Login-btn', false);
 
           //   Show all Contacts fields
+          show("loggedIn", true);
           show('contacts', true);
      }
 }
@@ -52,6 +51,12 @@ function createContact()
 
 //   Display selected contact.
 function displayContact(userId)
+{
+
+}
+
+//   Search for contact by Name.
+function searchContact()
 {
 
 }
@@ -101,7 +106,9 @@ function addContact()
 //   Sign out.
 function signOut()
 {
+     show("loggedIn", false);
 
+     show("log-in", true);
 }
 
 //   Sign up.
