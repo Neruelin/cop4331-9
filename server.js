@@ -63,7 +63,7 @@ app.post('/login', function (req, res) {
 		let result = "";
 		console.log(res.rows);
 	});
-
+	console.log("end of query");
     res.send("got the request", 200);
 //res.sendFile(__dirname + '/public/html/dashboard.html');
 });
