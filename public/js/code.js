@@ -89,9 +89,10 @@ function createAccount()
      //   Initialize userdata
      let userdata = {
           firstname: document.getElementById('firstName').value,
-          lastname: document.getElementById('firstName').value,
-          email: document.getElementById('email').value,
+          lastname: document.getElementById('lastName').value,
+          email: document.getElementById('email').value,    
           username: document.getElementById('user-signup').value,
+          password: document.getElementById('password-signup')
      }
 
      $.post("/signup", userdata, function (res, status) {
