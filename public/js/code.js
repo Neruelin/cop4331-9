@@ -3,7 +3,7 @@ const urlBase = 'https://cop4331-9.herokuapp.com'
 
 function displayErr () {
      if ($("#error").css("display") == "none"){
-          $("#error").slideToggle();         
+          $("#error").slideToggle();
      }
 }
 
@@ -30,33 +30,67 @@ function login()
      }).fail(function () {
           displayErr();
      })
-     // .then(response => {
-     //      console.log(response)
-     // })
-     // .then(data => {
-     //      console.log(data);
-     // })
-     // .catch((error) => {
-     //      console.log('Something went wrong! ( In createAccount(); )', error)
-     // });
-     // var login = document.getElementById("user-login").value;
-	// var password = document.getElementById("password-login").value;
-     // var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
-	// var url = urlBase + '/login';
 
-     // fetch('https://cop4331-9.herokuapp.com/login');
+//   **** If login successfull do this....  ****
+     if(status == 200)
+     {
+          //   Hide all login fields
+          show('log-in', false);
+          show('Signup-btn', false);
+          show('Login-btn', false);
 
-     //   Hide all login fields
-     //show('log-in', false);
-     //show('Signup-btn', false);
-     //show('Login-btn', false);
-
-     //   Show all Contacts fields
-     //show('contacts', true);
+          //   Show all Contacts fields
+          show('contacts', true);
+     }
 }
 
+function createContact()
+{
+     show('contact-info-flex', true);
+}
+
+//   Display selected contact.
+function displayContact(userId)
+{
+
+}
+
+//
+function editContact()
+{
+
+}
+
+function addContact()
+{
+     var url_add = 'https://cop4331-9.herokuapp.com/add';
+
+     let contactData = {
+          firstName: document.getElementById('addFirst').value,
+          lastName: document.getElementById('addLast').value,
+          phone: document.getElementById('addPhone').value,
+          street: document.getElementById('addStreet').value,
+          city: document.getElementById('addCity').value,
+          state: document.getElementById('addState').value,
+          zip: document.getElementById('addZIP').value,
+     }
+
+     //   Either First or Last name fields must be filled in to successfully
+     //   create a contact.
+     if (contactData.firstName == "" || contactData.lastName == "") {
+          displayErr();
+          return
+     }
+
+     //   Post new contact info to create new Contact.
+     $.post(url_add, contactData, function (res, status) {
+          console.log(status);
+     }).fail(function () {
+          displayErr();
+     })
 
 
+}
 
 
 
@@ -89,10 +123,9 @@ function createAccount()
      //   Initialize userdata
      let userdata = {
           firstname: document.getElementById('firstName').value,
-          lastname: document.getElementById('lastName').value,
-          email: document.getElementById('email').value,    
+          lastname: document.getElementById('firstName').value,
+          email: document.getElementById('email').value,
           username: document.getElementById('user-signup').value,
-          password: document.getElementById('password-signup').value
      }
 
      $.post("/signup", userdata, function (res, status) {
@@ -101,8 +134,6 @@ function createAccount()
           alert("signup failed");
      });
 
-
-     /*
      //   Initialize fetchdata for posting.
      let fetchdata = {
           method: 'POST',
@@ -118,7 +149,7 @@ function createAccount()
      .catch((error) => {
           console.log('Something went wrong! ( In createAccount(); )', error)
      });
-     */
+
      //   Clear all text fields.
      clearText('firstName');
      clearText('lastName');
