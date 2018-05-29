@@ -27,6 +27,7 @@ function login()
 
      $.post(url_login, userdata, function (res, status) {
           console.log(status);
+          console.log(res);
           if (status != "success") {
                displayErr();
                return;
