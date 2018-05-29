@@ -57,16 +57,15 @@ app.post('/login', function (req, response) {
 	console.log("receiving login info:");
     console.log(req.body);
 	let query = 'SELECT * FROM users WHERE username=\'' + req.body.username +'\';';
-	//console.log("Query :" + query);
 	client.query(query, (err, res) => {
-		let result = "";
-		console.log(res.rows);
-		if (req.body.username == res.rows[0].username) {
-			req.session.loggedin = true;
-			response.redirect('/dashboard');
-			return
+		if (res.rows.length > 0) {
+			if (req.body.username == res.rows[0].username) {
+				req.session.loggedin = true;
+				response.redirect('/dashboard');
+				return;
+			}
 		}
-		res.status(401).end();
+		response.status(401).end();
 	});
 //res.sendFile(__dirname + '/public/html/dashboard.html');
 });
