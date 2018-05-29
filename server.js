@@ -40,7 +40,7 @@ function checkInput(inputobj) {
 	let prohibitedChars = ['\"', '\'', ';']
 	for (let key in inputobj) {
 		for (let char in prohibitedChars) {
-			if ((inputobj[key]).indexof(char) > -1) {
+			if ((inputobj[key]).indexOf(char) > -1) {
 				return true;
 	}}}
 	return false;
