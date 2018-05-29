@@ -1,7 +1,11 @@
 //   Initialize connection to server through URL.
 const urlBase = 'https://cop4331-9.herokuapp.com'
 
-
+function displayErr () {
+     if ($("#error").style.display == none){
+          $("#error").slideToggle();         
+     }
+}
 
 //   Log in.
 function login()
@@ -14,10 +18,18 @@ function login()
           password: document.getElementById('password-login').value
      }
 
+     if (userdata.username == "" || userdata.password == "") {
+          displayErr();
+          return
+     }
+
      console.log(JSON.stringify(userdata));
 
      $.post(url_login, userdata, function (res, status) {
-          console.log(status);
+          if (status != "success") {
+               displayErr();
+               return;
+          }
      });
      // .then(response => {
      //      console.log(response)
