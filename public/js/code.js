@@ -70,6 +70,7 @@ function login()
 function signup()
 {
      //   Hide all login fields
+     show('error', false);
      show('log-in', false);
      show('Signup-btn', false);
      show('Login-btn', false);
@@ -95,7 +96,9 @@ function createAccount()
 
      $.post("/signup", userdata, function (res, status) {
           console.log(status);
-     })
+     }).fail(function() {
+          alert("signup failed");
+     });
 
      //   Initialize fetchdata for posting.
      let fetchdata = {
