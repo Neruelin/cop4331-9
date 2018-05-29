@@ -47,7 +47,7 @@ function login()
 //   Display new contact fields to user to fill in.
 function createContact()
 {
-     show('contact-info-flex', true);
+     show('addContact', true);
 }
 
 //   Display selected contact.
@@ -96,8 +96,6 @@ function addContact()
      }).fail(function () {
           displayErr();
      })
-
-
 }
 
 //   Sign out.
