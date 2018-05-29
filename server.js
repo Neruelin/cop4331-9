@@ -20,11 +20,9 @@ const saltRounds = 10;
 function saltnhashnstore (userdata) {
 	let result = {salt: undefined, hashword: undefined};
 	bcrypt.getSalt(saltRounds, (err, salt) => {
-		result.salt = salt;
 		bcrypt.hash(userdata.password, salt, (err, hash) => {
-			result.hash = hash;
-			let query= "INSERT INTO Users (username, passwordHash, passwordSalt, firstname, lastname, email) VALUES ($1, $2, $3, $4, $5, $6);";
-			let vals = [userdata.username, hash, salt, userdata.firstname, userdata.lastname, userdata.email]
+			let query= "INSERT INTO Users (username, passwordHash, passwordSalt, firstname, lastname, email) VALUES ($1, $2, $3, $4, $5);";
+			let vals = [userdata.username, hash, userdata.firstname, userdata.lastname, userdata.email]
 			client.query(text, vals, (err, res) => {   
 				if (err) {
 					console.log(err.stack);
@@ -35,7 +33,6 @@ function saltnhashnstore (userdata) {
 		});
 	});
 }
-
 
 // Returns true if a prohibited character is detected, returns false otherwise
 function checkInput(inputobj) {
