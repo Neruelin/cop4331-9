@@ -36,7 +36,7 @@ function saltnhashnstore (userdata) {
 
 // Returns true if a prohibited character is detected, returns false otherwise
 function checkInput(inputobj) {
-	console.log(typeof inputobj[username]);
+	console.log(typeof inputobj["username"]);
 	let prohibitedChars = ['\"', '\'', ';']
 	for (let key in inputobj) {
 		for (let char in prohibitedChars) {
