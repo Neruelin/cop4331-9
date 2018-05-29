@@ -100,6 +100,8 @@ function createAccount()
           alert("signup failed");
      });
 
+
+     /*
      //   Initialize fetchdata for posting.
      let fetchdata = {
           method: 'POST',
@@ -115,7 +117,7 @@ function createAccount()
      .catch((error) => {
           console.log('Something went wrong! ( In createAccount(); )', error)
      });
-
+     */
      //   Clear all text fields.
      clearText('firstName');
      clearText('lastName');

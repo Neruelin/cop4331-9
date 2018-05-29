@@ -90,9 +90,10 @@ app.get('/', function (req, res) {
 app.post('/login', function (req, response) {
 	console.log("receiving login info:");
     console.log(req.body);
-    if (checkInput(req.body)) {
+    if ( req.body.username.length > 50 ||
+    	 checkInput(req.body)) {
     	response.status(400).end();
-    	return
+    	return;
     } else {	
 		let query = 'SELECT * FROM users WHERE username=\'' + req.body.username +'\';';
 		client.query(query, (err, res) => {
@@ -112,7 +113,17 @@ app.post('/login', function (req, response) {
 app.post('/signup', function (req, res) {
 	console.log("recieving signup info:");
 	console.log(req.body);
-	res.send("got signup", 200);
+	if ( req.body.username.length > 50 ||
+		 req.body.firstname.length > 50 ||
+    	 req.body.lastname.length > 50 ||
+    	 req.body.email.length > 50 ||
+    	 checkInput(req.body)) {
+		response.status(400).end();
+		return;
+	} else {
+		saltnhashnstore(userdata);
+		res.send("got signup", 200);
+	}
 });
 
 app.post('/add', function (req, res) {
