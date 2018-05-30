@@ -119,10 +119,10 @@ app.post('/login', function (req, response) {
 app.post('/signup', function (req, res) {
 	console.log("recieving signup info:");
 	console.log(req.body);
-	if ( req.body.username.length > 50 ||
+	if ( /*req.body.username.length > 50 ||
 		 req.body.firstname.length > 50 ||
     	 req.body.lastname.length > 50 ||
-    	 req.body.email.length > 50 ||
+    	 req.body.email.length > 50 ||*/
     	 checkInput(req.body)) {
 		res.status(400).end();
 		return;
@@ -138,9 +138,9 @@ app.post('/add', function (req, res) {
 	res.send("got add", 200);
 });
 
-app.post("/contacts", function (req, res) {
+app.get("/contacts", function (req, res) {
 	console.log("recieving contacts info:")
-	console.log(req.body);
+	//console.log(req.body);
 	res.send("got contact request", 200);
 });
 
