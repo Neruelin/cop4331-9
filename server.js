@@ -14,23 +14,31 @@ const client = new Client({
 
 const saltRounds = 10;
 
+let globalSlot = "";
 
+String.prototype.format = function() {
+  a = this;
+  for (k in arguments) {
+    a = a.replace("{" + k + "}", arguments[k])
+  }
+  return a
+}
 
 // assumes validated input, 
 function saltnhashnstore (userdata) {
 	let result = {salt: undefined, hashword: undefined};
-	bcrypt.getSalt(saltRounds, (err, salt) => {
+	bcrypt.genSalt(saltRounds, (err, salt) => {
 		bcrypt.hash(userdata.password, salt, (err, hash) => {
-			let query= "INSERT INTO Users (username, passwordHash, passwordSalt, firstname, lastname, email) VALUES ($1, $2, $3, $4, $5);";
-			let vals = [userdata.username, hash, userdata.firstname, userdata.lastname, userdata.email]
-			client.query(text, vals, (err, res) => {   
-				if (err) {
-					console.log(err.stack);
-				} else {
-					console.log(res.rows[0]);
-				}
-			})
-		});
+			let query= "INSERT INTO Users (username, passwordHash, passwordSalt, firstname, lastname, email) VALUES ({0}, {1}, {2}, {3}, {4});";
+			globalSlot = query.format(userdata.username, hash, userdata.firstname, userdata.lastname, userdata.email);
+			//client.query(text, vals, (err, res) => {   
+			//	if (err) {
+			//		console.log(err.stack);
+			//	} else {
+			//		console.log(res.rows[0]);
+			//	}
+			//})
+		}); 
 	});
 }
 
@@ -147,7 +155,8 @@ app.get("/contacts", function (req, res) {
 // for db debuggery
 app.get('/db', function (req, res) {
 	console.log("showing DB results");
-	
+	console.log(globalSlot);
+
 	client.query('SELECT * FROM users', (err, res2) => { // dump db into variable
 		var dbresult = "";
 		if (err) throw err;
@@ -159,8 +168,9 @@ app.get('/db', function (req, res) {
 		console.log(dbresult);
 		res.send(dbresult);
 	});
-
 	
+	saltnhashnstore({username:"testuser", firstname:"test", lastname:"user", email:"testuser@test.com", password:"BananaPhone"});
+	res.send(globalSlot);	
 });
 
 app.get('/dashboard', function (req, res) {
