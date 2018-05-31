@@ -30,15 +30,17 @@ function saltnhashnstore (userdata) {
 	bcrypt.genSalt(saltRounds, (err, salt) => {
 		bcrypt.hash(userdata.password, salt, (err, hash) => {
 			console.log(hash);
-			let query= "INSERT INTO users (username, passwordhash, firstname, lastname, email) VALUES (\'" + userdata.username + "\', \'" + hash + "\', \'" + userdata.firstname + "\', \'" + userdata.lastname + "\', \'" + userdata.email + "\');";
-			console.log(query);
-			client.query(query, (err, res) => {   
-				if (err) {
-					console.log(err.stack);
-				} else {
-					console.log(res.rows[0]);
-				}
-			})
+			if (hash != undefined) {
+				let query= "INSERT INTO users (username, passwordhash, firstname, lastname, email) VALUES (\'" + userdata.username + "\', \'" + hash + "\', \'" + userdata.firstname + "\', \'" + userdata.lastname + "\', \'" + userdata.email + "\');";
+				console.log(query);
+				client.query(query, (err, res) => {   
+					if (err) {
+						console.log(err.stack);
+					} else {
+						console.log(res.rows[0]);
+					}
+				});
+			}
 		}); 
 	});
 }
