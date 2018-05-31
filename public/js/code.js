@@ -38,7 +38,7 @@ function login()
           show('log-in', false);
 
           //   Show all Contacts fields
-          show("loggedIn", true);
+          show('loggedIn', true);
           show('contacts', true);
      }
 }
@@ -50,7 +50,7 @@ function createContact()
 }
 
 //   Display selected contact.
-function displayContact(userId)
+function displayContact()
 {
 
 }
@@ -58,7 +58,7 @@ function displayContact(userId)
 //   Search for contact by Name.
 function searchContact()
 {
-
+     var url_login = 'https://cop4331-9.herokuapp.com/contacts';
 }
 
 //   Edit Contact Info.
@@ -143,22 +143,6 @@ function createAccount()
           console.log(status);
      }).fail(function() {
           alert("signup failed");
-     });
-
-     //   Initialize fetchdata for posting.
-     let fetchdata = {
-          method: 'POST',
-          headers: new Headers(),
-          body: JSON.stringify(userdata)
-     }
-
-     fetch(url_signup, fetchdata)
-     .then(response => response.json())
-     .then(data => {
-          console.log(data);
-     })
-     .catch((error) => {
-          console.log('Something went wrong! ( In createAccount(); )', error)
      });
 
      //   Clear all text fields.
