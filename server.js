@@ -29,8 +29,7 @@ function saltnhashnstore (userdata) {
 	let result = {salt: undefined, hashword: undefined};
 	bcrypt.genSalt(saltRounds, (err, salt) => {
 		bcrypt.hash(userdata.password, salt, (err, hash) => {
-			//let query= "INSERT INTO Users (username, passwordHash, passwordSalt, firstname, lastname, email) VALUES ({0}, {1}, {2}, {3}, {4});";
-			//globalSlot = query.format(userdata.username, hash, userdata.firstname, userdata.lastname, userdata.email);
+			console.log(hash);
 			let query= "INSERT INTO users (username, passwordhash, firstname, lastname, email) VALUES (\'" + userdata.username + "\', \'" + hash + "\', \'" + userdata.firstname + "\', \'" + userdata.lastname + "\', \'" + userdata.email + "\');";
 			console.log(query);
 			client.query(query, (err, res) => {   
