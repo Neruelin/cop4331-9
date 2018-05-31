@@ -31,8 +31,8 @@ function saltnhashnstore (userdata) {
 		bcrypt.hash(userdata.password, salt, (err, hash) => {
 			//let query= "INSERT INTO Users (username, passwordHash, passwordSalt, firstname, lastname, email) VALUES ({0}, {1}, {2}, {3}, {4});";
 			//globalSlot = query.format(userdata.username, hash, userdata.firstname, userdata.lastname, userdata.email);
-			let query= "INSERT INTO users (username, passwordhash, firstname, lastname, email) VALUES (\'$1\', \'$2\', \'$3\', \'$4\', \'$5\');";
-+			let vals = [userdata.username, hash, userdata.firstname, userdata.lastname, userdata.email];
+			let query= "INSERT INTO u`sers (username, passwordhash, firstname, lastname, email) VALUES (\'$1\', \'$2\', \'$3\', \'$4\', \'$5\');";
+				let vals = [userdata.username, hash, userdata.firstname, userdata.lastname, userdata.email];
 			client.query(query, vals, (err, res) => {   
 				if (err) {
 					console.log(err.stack);
