@@ -128,7 +128,7 @@ app.post('/login', function (req, response) {
 			}
 		});
     }
-//res.sendFile(__dirname + '/public/html/dashboard.html');
+response.sendFile(__dirname + '/public/html/dashboard.html');
 });
 
 app.post('/signup', function (req, res) {
