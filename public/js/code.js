@@ -1,190 +1,65 @@
 //   Initialize connection to server through URL.
-const urlBase = 'https://cop4331-9.herokuapp.com'
 
-function displayErr () {
-     if ($("#error").css("display") == "none"){
-          $("#error").slideToggle();
-     }
-}
+
+
 
 //   Log in.
 function login()
 {
-     var url_login = 'https://cop4331-9.herokuapp.com/login';
-     var user = document.getElementById('user-login').value;
+     //   Hide all login fields
+     hideOrShow('log-in', false);
+     hideOrShow('Signup-btn', false);
+     hideOrShow('Login-btn', false);
 
-     let userdata = {
-          username: document.getElementById('user-login').value,
-          password: document.getElementById('password-login').value
-     }
-
-     if (userdata.username == "" || userdata.password == "") {
-          displayErr();
-          return
-     }
-
-     console.log(JSON.stringify(userdata));
-
-     $.post(url_login, userdata, function (res, status) {
-          console.log(status);
-     }).fail(function () {
-          displayErr();
-     })
-
-//   **** If login successfull do this....  ****
-     if(status == 200)
-     {
-          //   Hide all login fields
-          show('log-in', false);
-
-          //   Show all Contacts fields
-          show("loggedIn", true);
-          show('contacts', true);
-     }
+     //   Show all Contacts fields
+     hideOrShow('contacts', true);
 }
 
-//   Display new contact fields to user to fill in.
-function createContact()
-{
-     show('addContact', true);
-}
 
-//   Display selected contact.
-function displayContact(userId)
-{
 
-}
 
-//   Search for contact by Name.
-function searchContact()
-{
 
-}
 
-//   Edit Contact Info.
-function editContact()
-{
+//   Log out.
 
-}
 
-//   Delete Contact.
-function deleteContact()
-{
 
-}
 
-//   Add new Contact Info
-function addContact()
-{
-     var url_add = 'https://cop4331-9.herokuapp.com/add';
-
-     let contactData = {
-          firstName: document.getElementById('addFirst').value,
-          lastName: document.getElementById('addLast').value,
-          phone: document.getElementById('addPhone').value,
-          street: document.getElementById('addStreet').value,
-          city: document.getElementById('addCity').value,
-          state: document.getElementById('addState').value,
-          zip: document.getElementById('addZIP').value,
-     }
-
-     //   Either First or Last name fields must be filled in to successfully
-     //   create a contact.
-     if (contactData.firstName == "" || contactData.lastName == "") {
-          displayErr();
-          return
-     }
-
-     //   Post new contact info to create new Contact.
-     $.post(url_add, contactData, function (res, status) {
-          console.log(status);
-     }).fail(function () {
-          displayErr();
-     })
-}
-
-//   Sign out.
-function signOut()
-{
-     show("loggedIn", false);
-
-     show("log-in", true);
-}
 
 //   Sign up.
 function signup()
 {
      //   Hide all login fields
-     show('error', false);
-     show('log-in', false);
-     show('Signup-btn', false);
-     show('Login-btn', false);
+     hideOrShow('log-in', false);
+     hideOrShow('Signup-btn', false);
+     hideOrShow('Login-btn', false);
 
      //   Show all Sign up fields
-     show('sign-up', true);
+     hideOrShow('sign-up', true);
 
 }
 
-// Terribly ugly function needs a lot of work!!
 function createAccount()
 {
-     //   Initialize url.
-     var url_signup = 'https://cop4331-9.herokuapp.com/signup';
+     //   Get both password field values, and check if they match.
+     var password = document.getElementById("password-signup").value;
+     var rePass = document.getElementById("repassword-signup").value;
 
-     //   Initialize userdata
-     let userdata = {
-          firstname: document.getElementById('firstName').value,
-          lastname: document.getElementById('firstName').value,
-          email: document.getElementById('email').value,
-          username: document.getElementById('user-signup').value,
+     //   Check to see if this can be done in real time as the password
+     //   is being typed.
+     if(password == rePass)
+     {
+          var firstName = document.getElementById("firstName").value;
+          var lastName = document.getElementById("lastName").value;
+          var email = document.getElementById("email").value;
+          var userName = document.getElementById("user-signup").value;
      }
 
-     $.post("/signup", userdata, function (res, status) {
-          console.log(status);
-     }).fail(function() {
-          alert("signup failed");
-     });
-
-     //   Initialize fetchdata for posting.
-     let fetchdata = {
-          method: 'POST',
-          headers: new Headers(),
-          body: JSON.stringify(userdata)
-     }
-
-     fetch(url_signup, fetchdata)
-     .then(response => response.json())
-     .then(data => {
-          console.log(data);
-     })
-     .catch((error) => {
-          console.log('Something went wrong! ( In createAccount(); )', error)
-     });
-
-     //   Clear all text fields.
-     clearText('firstName');
-     clearText('lastName');
-     clearText('email');
-     clearText('user-signup');
-     clearText('password-signup');
-     clearText('repassword-signup');
-
-     //   Hide all Sign up fields
-     show('sign-up', false);
-
-     //   Show all Sign up fields
-     show('log-in', true);
-     show('Signup-btn', true);
-     show('Login-btn', true);
 }
 
 
-//        ++===============================================++
-//        ||                 Helper Functions              ||
-//        ++===============================================++
-
-//   Turn elements display/visiblity on/off.  (Credit Professor Leinecker)
-function show( elementId, showState )
+//   Custom Functions.
+function hideOrShow( elementId, showState )
 {
 	var vis = "visible";
 	var dis = "flex";
@@ -196,10 +71,4 @@ function show( elementId, showState )
 
 	document.getElementById( elementId ).style.visibility = vis;
 	document.getElementById( elementId ).style.display = dis;
-}
-
-//   Clear text from previously used text fields.
-function clearText(elementId)
-{
-     document.getElementById(elementId).value = '';
 }
