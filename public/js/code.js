@@ -137,6 +137,7 @@ function createAccount()
           lastname: document.getElementById('firstName').value,
           email: document.getElementById('email').value,
           username: document.getElementById('user-signup').value,
+	  password: document.getElementById('password-signup').value
      }
 
      $.post("/signup", userdata, function (res, status) {
