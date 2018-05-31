@@ -29,10 +29,9 @@ function saltnhashnstore (userdata) {
 	let result = {salt: undefined, hashword: undefined};
 	bcrypt.genSalt(saltRounds, (err, salt) => {
 		bcrypt.hash(userdata.password, salt, (err, hash) => {
-			console.log(hash);
+			console.log("the hash: " + hash);
 			if (hash != undefined) {
 				let query= "INSERT INTO users (username, passwordhash, firstname, lastname, email) VALUES (\'" + userdata.username + "\', \'" + hash + "\', \'" + userdata.firstname + "\', \'" + userdata.lastname + "\', \'" + userdata.email + "\');";
-				console.log(query);
 				client.query(query, (err, res) => {   
 					if (err) {
 						console.log(err.stack);
@@ -105,6 +104,7 @@ app.post('/login', function (req, response) {
     console.log(req.body);
     if ( req.body.username.length > 50 ||
     	 checkInput(req.body)) {
+    	console.log("status 400 ln 107");
     	response.status(400).end();
     	return;
     } else {	
@@ -118,10 +118,12 @@ app.post('/login', function (req, response) {
 						console.log("redirecting to dash");
 						response.redirect('/dashboard');
 					} else {
+						console.log("status 401 ln 122");	
 						response.status(401).end();
 					}
 				});
 			} else {
+		    	console.log("status 400 ln 126");
 				response.status(400).end();
 			}
 		});
