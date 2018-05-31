@@ -113,6 +113,7 @@ app.post('/login', function (req, response) {
 					console.log("password compare: " + same);
 					if (same) {
 						req.session.loggedin = true;
+						console.log("redirecting to dash");
 						response.redirect('/dashboard');
 					} else {
 						response.status(401).end();
