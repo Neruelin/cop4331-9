@@ -108,7 +108,7 @@ app.post('/login', function (req, response) {
 		let query = 'SELECT * FROM users WHERE username=\'' + req.body.username +'\';';
 		client.query(query, (err, res) => {
 			if (res.rows.length == 1) {
-				bcrypt.compare(req.body.password, res.rows[0].passwordHash, (err, same) => {
+				bcrypt.compare(req.body.password, res.rows[0].passwordhash, (err, same) => {
 					console.log("password compare: " + same);
 					if (same) {
 						req.session.loggedin = true;
