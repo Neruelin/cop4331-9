@@ -197,7 +197,7 @@ app.get('/dashboard', function (req, res2) {
 	if (req.session.loggedin) {
 		console.log("Serving dashboard.html");
 		console.log(__dirname);
-		res2.sendFile('./public/html/dashboard.html');
+		res2.sendFile(__dirname + '/public/html/dashboard.html');
 		//res2.send("here's the fuckin dashboard, binch.");
 		console.log("FUCK!");
 	} else {
