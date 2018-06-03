@@ -114,9 +114,10 @@ app.post('/login', function (req, response) {
 				bcrypt.compare(req.body.password, res.rows[0].passwordhash, (err2, same) => {
 					console.log("password compare: " + same);
 					if (same) {
-						req.session.loggedin = true;
+						
 						console.log("redirecting to dash");
 						response.sendFile(__dirname + '/public/html/dashboard.html');
+						req.session.loggedin = true;
 						//return;
 					} else {
 						console.log("status 401 ln 122");	
