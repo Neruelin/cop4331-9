@@ -163,7 +163,7 @@ app.post('/signup', function (req, res) {
 app.post('/add', function (req, res) {
 	console.log("recieving add info:");
 	console.log(req.body);
-	let query= "INSERT INTO contacts (id, fname, lname, phonenumber) VALUES (\'" + id + "\', \'" + req.body.firstName + "\', \'" + req.body.lastName + "\', \'" + req.body.phoneNumber + "\');";
+	let query= "INSERT INTO contacts (id, fname, lname, phonenumber, email, address, city, state, zipcode) VALUES (\'" + id + "\', \'" + req.body.firstName + "\', \'" + req.body.lastName + "\', \'" + req.body.phone + "\', \'" + req.body.email + "\', \'" + req.body.street + "\', \'" + req.body.city + "\', \'" + req.body.state + "\', \'" + req.body.zip + "\');";
 	console.log(query);
 				client.query(query, (err, res2) => {   
 					if (err) {

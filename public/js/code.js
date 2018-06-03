@@ -84,6 +84,7 @@ function addContact()
           firstName: document.getElementById('addFirst').value,
           lastName: document.getElementById('addLast').value,
           phone: document.getElementById('addPhone').value,
+		  email: document.getElementById('addEmail').value,
           street: document.getElementById('addStreet').value,
           city: document.getElementById('addCity').value,
           state: document.getElementById('addState').value,
