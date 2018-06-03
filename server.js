@@ -193,15 +193,20 @@ app.get('/db1', function (req, res) {
 	res.send(globalSlot);	
 });
 
-app.get('/dashboard', function (req, res2) {
+app.get('/dashboard', function (req, res) {
 	if (req.session.loggedin) {
 		console.log("Serving dashboard.html");
 		console.log(__dirname);
-		res2.sendFile(__dirname + '/public/html/dashboard.html');
+		res.sendFile(__dirname + '/public/html/dashboard.html', function(err) {
+        console.log("FUCK!");
+			if (err) {
+            res.status(err.status).end();
+        }
+    });
 		//res2.send("here's the fuckin dashboard, binch.");
-		console.log("FUCK!");
+		
 	} else {
-		res2.redirect("/login");
+		res.redirect("/login");
 	}
 });
 
