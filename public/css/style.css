@@ -125,7 +125,7 @@ p.info{
      display: flex;
      flex-direction: row;
      justify-content: center;
-
+     visibility: visible;
 
 }
 
