@@ -177,8 +177,7 @@ app.post("/contacts", function (req, res) {
 						console.log(err.stack);
 					} else {
 						console.log(res2);
-						res.send(res2.rows[0]);
-						res.status(200).end();
+						res.status(200).send(res2.rows[0]);
 					}
 				});
 	

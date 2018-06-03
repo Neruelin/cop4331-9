@@ -37,7 +37,7 @@
 
 .contact-info-flex{
      display: flex;
-     visibility: visible;
+     visibility: hidden;
      width: 33vw;
      height: 66vh;
      overflow: hidden;
