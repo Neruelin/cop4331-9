@@ -167,7 +167,7 @@ app.post('/add', function (req, res) {
 	res.send("got add", 200);
 });
 
-app.post("/contacts", function (req, res) {
+app.get("/contacts", function (req, res) {
 	console.log("recieving contacts info:")
 	//console.log(req.body);
 	let query = 'SELECT * FROM contacts WHERE id =\'' + id + '\' AND (fname LIKE \'' + req.body.search + '\' OR lname LIKE \'' + req.body.search + '\');';

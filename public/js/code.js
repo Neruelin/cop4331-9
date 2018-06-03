@@ -62,7 +62,7 @@ function searchContact()
 	  let userdata = {
           search: document.getElementById('search').value,   
      }
-	  $.post(url_login, userdata, function (res, status) {
+	  $.get(url_login, userdata, function (res, status) {
 	  show('contact-info-flex', true);
 	  doucment.getElementById('Name').value = res.fName + ' ' + res.lName;
 	  //doucment.getElementById('Name').value = res.fName + ' ' + res.lName;
