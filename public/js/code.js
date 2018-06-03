@@ -28,8 +28,7 @@ function login()
      console.log(JSON.stringify(userdata));
 console.log("SHIT!");
      $.post(url_login, userdata, function (res, status) {
-	  console.log("FUCK!");
-          console.log(status);
+	  window.location = '/dashboard';
      }).fail(function () {
           displayErr();
      })
