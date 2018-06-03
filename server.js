@@ -114,10 +114,11 @@ app.post('/login', function (req, response) {
 				bcrypt.compare(req.body.password, res.rows[0].passwordhash, (err2, same) => {
 					console.log("password compare: " + same);
 					if (same) {
-						
-						console.log("redirecting to dash");
-						
 						req.session.loggedin = true;
+						console.log("redirecting to dash");
+						response.sendFile(__dirname + '/public/html/dashboard.html');
+						response.redirect('/dashboard');
+						return;
 						//return;
 					} else {
 						console.log("status 401 ln 122");	
@@ -130,9 +131,7 @@ app.post('/login', function (req, response) {
 			}
 		});
     }
-response.sendFile(__dirname + '/public/html/dashboard.html');
-response.redirect('/dashboard');
-return;
+
 });
 
 app.post('/signup', function (req, res) {
