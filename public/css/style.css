@@ -103,18 +103,6 @@ h3.info{
      margin-bottom: 0px;
 }
 
-.hidden-info{
-
-     font-family: 'Source Sans Pro', sans-serif;
-     font-weight: 200;
-     color: white;
-     padding-top: 5px;
-     padding-bottom: 5px;
-     margin-bottom: 0px;
-	 display: none;
-	 visibility: hidden;
-}
-
 p.info{
      font-size: 30px;
      margin-top: 0px;
