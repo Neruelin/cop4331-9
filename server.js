@@ -121,9 +121,9 @@ app.post('/login', function (req, response) {
 					if (same) {
 						req.session.loggedin = true;
 						console.log("redirecting to dash");
-						response.sendFile(__dirname + '/public/html/dashboard.html');
-						//response.redirect('/dashboard');
-						return;
+						//response.sendFile(__dirname + '/public/html/dashboard.html');
+						response.redirect('/dashboard');
+						//return;
 						//return;
 					} else {
 						console.log("status 401 ln 122");	
@@ -197,12 +197,7 @@ app.get('/dashboard', function (req, res) {
 	if (req.session.loggedin) {
 		console.log("Serving dashboard.html");
 		console.log(__dirname);
-		res.status(200).sendFile(__dirname + '/public/html/dashboard.html', function(err) {
-        console.log("FUCK!");
-			if (err) {
-            res.status(err.status).end();
-        }
-    });
+		return res.status(200).sendFile(__dirname + '/public/html/dashboard.html');
 		//res2.send("here's the fuckin dashboard, binch.");
 		
 	} else {
