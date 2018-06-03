@@ -60,7 +60,6 @@ function displayContact()
 //   Search for contact by Name.
 function searchContact()
 {
-	show('contact-info-flex', true);
      var url_login = 'https://cop4331-9.herokuapp.com/contacts';
 	  let userdata = {
           search: document.getElementById('search').value,   
