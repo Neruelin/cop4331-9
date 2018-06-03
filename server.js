@@ -188,12 +188,13 @@ app.get('/db1', function (req, res) {
 	res.send(globalSlot);	
 });
 
-app.get('/dashboard', function (req, res) {
+app.get('/dashboard', function (req, res2) {
 	if (req.session.loggedin) {
 		console.log("Serving dashboard.html");
-		res.sendFile(__dirname + '/public/html/dashboard.html');
+		res2.sendFile(__dirname + '/public/html/dashboard.html');
+		console.log("FUCK!");
 	} else {
-		res.redirect("/login");
+		res2.redirect("/login");
 	}
 });
 
