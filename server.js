@@ -99,6 +99,11 @@ app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/public/html/login.html');
 });
 
+app.get('/login', function (req, res) {
+	console.log("Serving login.html");
+	res.sendFile(__dirname + '/public/html/login.html');
+});
+
 app.post('/login', function (req, response) {
 	console.log("receiving login info:");
     console.log(req.body);
