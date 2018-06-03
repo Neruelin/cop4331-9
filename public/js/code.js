@@ -60,12 +60,14 @@ function displayContact()
 //   Search for contact by Name.
 function searchContact()
 {
+	
      var url_login = 'https://cop4331-9.herokuapp.com/contacts';
 	  let userdata = {
           search: document.getElementById('search').value,   
      }
 	 //document.getElementById('Name').innerHTML = 'AAAAAAAAAAAAAAAAAAAAAAAAA';
 	  $.post(url_login, userdata, function (res, status) {
+      document.getElementById('contact-info-flex').style.visibility = "visible";
 	  document.getElementById('Name').innerHTML = res.fName + ' ' + res.lName;
      }).fail(function () {
           displayErr();
