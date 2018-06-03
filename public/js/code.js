@@ -52,13 +52,24 @@ function createContact()
 //   Display selected contact.
 function displayContact()
 {
-
+	//var url_login = 'https://cop4331-9.herokuapp.com/contacts';
 }
 
 //   Search for contact by Name.
 function searchContact()
 {
      var url_login = 'https://cop4331-9.herokuapp.com/contacts';
+	  let userdata = {
+          search: document.getElementById('search').value,   
+     }
+	  $.post(url_login, userdata, function (res, status) {
+	  show('contact-info-flex', true);
+	  doucment.getElementById('Name').value = res.fName + ' ' + res.lName;
+	  //doucment.getElementById('Name').value = res.fName + ' ' + res.lName;
+     }).fail(function () {
+          displayErr();
+     })
+	 
 }
 
 //   Edit Contact Info.
