@@ -66,7 +66,7 @@ function searchContact()
      }
 	 
 	  $.post(url_login, userdata, function (res, status) {
-	  doucment.getElementById('Name').value = res.fName + ' ' + res.lName;
+	  doucment.getElementById('Name').innerHTML = res.fName + ' ' + res.lName;
      }).fail(function () {
           displayErr();
      })
