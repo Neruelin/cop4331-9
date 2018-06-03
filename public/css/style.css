@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400');
 
 .addContact{
-     display: inline;
-     visibility: visible;
+     display: none;
+     visibility: hidden;
 }
 
 .btn{
@@ -26,15 +26,15 @@
 }
 
 .contacts{
-     display: inline;
+     display: none;
      flex-direction: column;
      padding-left: 10px;
      padding-right: 10px;
 }
 
 .contact-info-flex{
-     display: inline;
-     visibility: visible;
+     display: none;
+     visibility: hidden;
      width: 33vw;
      height: 66vh;
      overflow: hidden;
