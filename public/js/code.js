@@ -67,7 +67,7 @@ function searchContact()
      }
 	 //document.getElementById('Name').innerHTML = 'AAAAAAAAAAAAAAAAAAAAAAAAA';
 	  $.post(url_login, userdata, function (res, status) {
-      document.getElementById('contact-info-flex').style.visibility = "visible";
+      show('contact-info-flex', true);
 	  document.getElementById('Name').innerHTML = res.fName + ' ' + res.lName;
      }).fail(function () {
           displayErr();
