@@ -104,6 +104,8 @@ app.get('/login', function (req, res) {
 	res.sendFile(__dirname + '/public/html/login.html');
 });
 
+var id = 1;
+
 app.post('/login', function (req, response) {
 	console.log("receiving login info:");
     console.log(req.body);
@@ -123,6 +125,7 @@ app.post('/login', function (req, response) {
 						console.log("redirecting to dash");
 						//response.sendFile(__dirname + '/public/html/dashboard.html');
 						//response.redirect('/dashboard');
+						id = res.rows[0].id;
 						response.status(200).end();
 						//return;
 						//return;
@@ -152,6 +155,7 @@ app.post('/signup', function (req, res) {
 		return;
 	} else {
 		saltnhashnstore(req.body);
+		
 		res.status(200).send("got signup");
 	}
 });
@@ -159,6 +163,15 @@ app.post('/signup', function (req, res) {
 app.post('/add', function (req, res) {
 	console.log("recieving add info:");
 	console.log(req.body);
+	let query= "INSERT INTO contacts (id, fname, lname, phonenumber) VALUES (\'" + id + "\', \'" + req.body.firstName + "\', \'" + req.body.lastName + "\', \'" + req.body.phoneNumber + "\');";
+	console.log(query);
+				client.query(query, (err, res2) => {   
+					if (err) {
+						console.log(err.stack);
+					} else {
+						console.log(res2);
+					}
+				});
 	res.send("got add", 200);
 });
 
