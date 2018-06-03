@@ -52,20 +52,22 @@ function createContact()
 //   Display selected contact.
 function displayContact()
 {
+	 
+	  //doucment.getElementById('Name').value = res.fName + ' ' + res.lName;
 	//var url_login = 'https://cop4331-9.herokuapp.com/contacts';
 }
 
 //   Search for contact by Name.
 function searchContact()
 {
+	show('contact-info-flex', true);
      var url_login = 'https://cop4331-9.herokuapp.com/contacts';
 	  let userdata = {
           search: document.getElementById('search').value,   
      }
-	  $.get(url_login, userdata, function (res, status) {
-	  show('contact-info-flex', true);
+	 
+	  $.post(url_login, userdata, function (res, status) {
 	  doucment.getElementById('Name').value = res.fName + ' ' + res.lName;
-	  //doucment.getElementById('Name').value = res.fName + ' ' + res.lName;
      }).fail(function () {
           displayErr();
      })
