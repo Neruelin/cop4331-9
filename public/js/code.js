@@ -11,6 +11,7 @@ function displayErr () {
 //   Log in.
 function login()
 {
+	console.log("DID YOU FUCKING CLICK ME, BINCH?");
      var url_login = 'https://cop4331-9.herokuapp.com/login';
      var user = document.getElementById('user-login').value;
 
