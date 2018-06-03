@@ -118,7 +118,7 @@ app.post('/login', function (req, response) {
 						console.log("redirecting to dash");
 						//response.sendFile(__dirname + '/public/html/dashboard.html');
 						response.redirect('/dashboard');
-						return;
+						//return;
 						//return;
 					} else {
 						console.log("status 401 ln 122");	
