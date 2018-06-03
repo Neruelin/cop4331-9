@@ -1,5 +1,5 @@
 //   Initialize connection to server through URL.
-const urlBase = 'https://cop4331-9.herokuapp.com'
+const urlBase = 'https://cop4331-9.herokuapp.com';
 
 
 
@@ -10,7 +10,7 @@ function login()
 
      let userdata = {
           username: document.getElementById('user-login').value,
-	  password: document.getelementById('password-login').value
+	  password: document.getElementById('password-login').value
      }
 
      let fetchdata = {
@@ -19,7 +19,7 @@ function login()
           body: JSON.stringify(userdata)
      }
 
-     fetch(url_signup, fetchdata)
+     fetch(urlBase, fetchdata)
      .then(response => console.log(response))
      .then(data => {
           console.log(data);
