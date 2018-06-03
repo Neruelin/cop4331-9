@@ -151,7 +151,7 @@ app.post('/signup', function (req, res) {
 		return;
 	} else {
 		saltnhashnstore(req.body);
-		res.send("got signup", 200);
+		res.status(200).send("got signup");
 	}
 });
 
