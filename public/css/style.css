@@ -3,6 +3,7 @@
 .addContact{
      display: none;
      visibility: hidden;
+	 flex-direction: column;
 }
 
 .btn{
@@ -26,10 +27,11 @@
 }
 
 .contacts{
-     display: none;
+     display: flex;
      flex-direction: column;
-     padding-left: 10px;
-     padding-right: 10px;
+     padding-left: 100px;
+     padding-right: 100px;
+	 visibility: visible;
 }
 
 .contact-info-flex{
@@ -46,6 +48,10 @@
 }
 
 .extraButtons{
+     display: flex;
+     flex-direction: column;
+}
+.moreButtons{
      display: flex;
      flex-direction: column;
 }
@@ -166,7 +172,7 @@ p.info{
 }
 
 .text-area{
-     display: block;
+     display: inline;
      border-radius: 10px;
      background-color: white;
      border: none;

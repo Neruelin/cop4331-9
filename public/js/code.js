@@ -26,7 +26,6 @@ function login()
      }
 
      console.log(JSON.stringify(userdata));
-console.log("SHIT!");
      $.post(url_login, userdata, function (res, status) {
 	  window.location = '/dashboard';
      }).fail(function () {
@@ -49,6 +48,7 @@ console.log("SHIT!");
 function createContact()
 {
      show('addContact', true);
+	 show('contacts', false);
 }
 
 //   Display selected contact.
@@ -99,10 +99,17 @@ function addContact()
 
      //   Post new contact info to create new Contact.
      $.post(url_add, contactData, function (res, status) {
-          console.log(status);
+           show('addContact', false);
+		   show('contacts', true);
      }).fail(function () {
           displayErr();
      })
+}
+
+function goBack()
+{
+           show('addContact', false);
+		   show('contacts', true);
 }
 
 //   Sign out.
