@@ -131,6 +131,7 @@ function signOut()
      show("loggedIn", false);
 
      show("log-in", true);
+	 window.location = '/login';
 }
 
 //   Sign up.
