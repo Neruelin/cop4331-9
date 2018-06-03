@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400');
 
 .addContact{
-     display: none;
-     visibility: hidden;
+     display: inline;
+     visibility: visible;
 }
 
 .btn{
@@ -26,15 +26,15 @@
 }
 
 .contacts{
-     display: none;
+     display: inline;
      flex-direction: column;
      padding-left: 10px;
      padding-right: 10px;
 }
 
 .contact-info-flex{
-     display: none;
-     visibility: hidden;
+     display: inline;
+     visibility: visible;
      width: 33vw;
      height: 66vh;
      overflow: hidden;
@@ -179,6 +179,7 @@ p.info{
      font-weight: 400;
      font-size: 20px;
      color: #555555;
+     visibility: visible;
 }
 
 #log-in{
