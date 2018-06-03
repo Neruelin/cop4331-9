@@ -122,7 +122,8 @@ app.post('/login', function (req, response) {
 						req.session.loggedin = true;
 						console.log("redirecting to dash");
 						//response.sendFile(__dirname + '/public/html/dashboard.html');
-						response.redirect('/dashboard');
+						//response.redirect('/dashboard');
+						response.status(200).end();
 						//return;
 						//return;
 					} else {
