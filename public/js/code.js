@@ -64,9 +64,9 @@ function searchContact()
 	  let userdata = {
           search: document.getElementById('search').value,   
      }
-	 
+	 //document.getElementById('Name').innerHTML = 'AAAAAAAAAAAAAAAAAAAAAAAAA';
 	  $.post(url_login, userdata, function (res, status) {
-	  doucment.getElementById('Name').innerHTML = res.fName + ' ' + res.lName;
+	  document.getElementById('Name').innerHTML = res.fName + ' ' + res.lName;
      }).fail(function () {
           displayErr();
      })
