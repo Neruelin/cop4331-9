@@ -116,8 +116,7 @@ app.post('/login', function (req, response) {
 					if (same) {
 						req.session.loggedin = true;
 						console.log("redirecting to dash");
-						response.redirect('/dashboard');
-						return;
+						response.redirect('/dashboard').end();
 					} else {
 						console.log("status 401 ln 122");	
 						response.status(401).end();
