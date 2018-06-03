@@ -3,6 +3,7 @@ const urlBase = 'https://cop4331-9.herokuapp.com'
 
 function displayErr () {
      if ($("#error").css("display") == "none"){
+	   console.log("UHHH!")
           $("#error").slideToggle();
      }
 }
@@ -24,7 +25,7 @@ function login()
      }
 
      console.log(JSON.stringify(userdata));
-
+console.log("SHIT!");
      $.post(url_login, userdata, function (res, status) {
 	  console.log("FUCK!");
           console.log(status);
