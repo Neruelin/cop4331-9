@@ -3,7 +3,6 @@ const urlBase = 'https://cop4331-9.herokuapp.com'
 
 function displayErr () {
      if ($("#error").css("display") == "none"){
-	   console.log("UHHH!")
           $("#error").slideToggle();
      }
 }
@@ -11,7 +10,6 @@ function displayErr () {
 //   Log in.
 function login()
 {
-	console.log("DID YOU FUCKING CLICK ME, BINCH?");
      var url_login = 'https://cop4331-9.herokuapp.com/login';
      var user = document.getElementById('user-login').value;
 

@@ -123,12 +123,8 @@ app.post('/login', function (req, response) {
 					if (same) {
 						req.session.loggedin = true;
 						console.log("redirecting to dash");
-						//response.sendFile(__dirname + '/public/html/dashboard.html');
-						//response.redirect('/dashboard');
 						id = res.rows[0].id;
 						response.status(200).end();
-						//return;
-						//return;
 					} else {
 						console.log("status 401 ln 122");	
 						response.status(401).end();
@@ -146,11 +142,7 @@ app.post('/login', function (req, response) {
 app.post('/signup', function (req, res) {
 	console.log("recieving signup info:");
 	console.log(req.body);
-	if ( /*req.body.username.length > 50 ||
-		 req.body.firstname.length > 50 ||
-    	 req.body.lastname.length > 50 ||
-    	 req.body.email.length > 50 ||*/
-    	 checkInput(req.body)) {
+	if ( checkInput(req.body)) {
 		res.status(400).end();
 		return;
 	} else {
@@ -178,7 +170,16 @@ app.post('/add', function (req, res) {
 app.get("/contacts", function (req, res) {
 	console.log("recieving contacts info:")
 	//console.log(req.body);
-	res.send("got contact request", 200);
+	let query = "SELECT * FROM contacts WHERE id =\'" + id + "\';";
+	console.log(query)
+	client.query(query, (err, res2) => {
+		if (err) {
+						console.log(err.stack);
+					} else {
+						console.log(res2);
+					}
+				});
+	res.status(200).send("got contact request");
 });
 
 // for db debuggery
