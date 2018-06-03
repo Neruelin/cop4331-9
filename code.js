@@ -9,7 +9,8 @@ function login()
      var url_signup = 'https://cop4331-9.herokuapp.com/login';
 
      let userdata = {
-          username: document.getElementById('user-signup').value,
+          username: document.getElementById('user-login').value,
+	  password: document.getelementById('password-login').value
      }
 
      let fetchdata = {
@@ -75,7 +76,7 @@ function createAccount()
      //   Initialize userdata
      let userdata = {
           firstname: document.getElementById('firstName').value,
-          lastname: document.getElementById('firstName').value,
+          lastname: document.getElementById('lastName').value,
           email: document.getElementById('email').value,
           username: document.getElementById('user-signup').value,
      }
