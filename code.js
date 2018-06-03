@@ -79,6 +79,7 @@ function createAccount()
           lastname: document.getElementById('lastName').value,
           email: document.getElementById('email').value,
           username: document.getElementById('user-signup').value,
+	  password: document.getElementById('password-signup').value
      }
 
      //   Initialize fetchdata for posting.
