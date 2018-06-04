@@ -170,8 +170,8 @@ function addContact()
 
      let contactData = {
 		  ID: id,
-          firstName: document.getElementById('addFirst').value,
-          lastName: document.getElementById('addLast').value,
+          firstName: document.getElementById('addFirst').value.trim(),
+          lastName: document.getElementById('addLast').value.trim(),
           phone: document.getElementById('addPhone').value,
 		  email: document.getElementById('addEmail').value,
           street: document.getElementById('addStreet').value,
