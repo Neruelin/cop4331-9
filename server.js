@@ -167,6 +167,23 @@ app.post('/add', function (req, res) {
 	res.send("got add", 200);
 });
 
+app.post('/delete', function (req, res) {
+	console.log("recieving add info:");
+	console.log(req.body);
+	let query= "DELETE FROM contacts WHERE id = \'" + id + "\' AND fname = \'" + req.body.firstName + "\' "+
+	"AND lname = \'" + req.body.lastName + "\' AND phonenumber = \'" + req.body.phone + "\' AND email = \'" + req.body.email + "\'"+
+	" AND address = \'" + req.body.street + "\' AND city = \'" + req.body.city + "\' AND state = \'" + req.body.state + "\' AND zipcode = \'" + req.body.zip + "\';";
+	console.log(query);
+				client.query(query, (err, res2) => {   
+					if (err) {
+						console.log(err.stack);
+					} else {
+						console.log(res2);
+					}
+				});
+	res.send("deleted", 200);
+});
+
 app.post("/contacts", function (req, res) {
 	console.log("recieving contacts info:")
 	//console.log(req.body);

@@ -91,8 +91,8 @@ deleteContact();
  document.getElementById('addFirst').value = document.getElementById('fname').innerHTML;
          document.getElementById('addLast').value = document.getElementById('lname').innerHTML;
           document.getElementById('addPhone').value = document.getElementById('Phone').innerHTML;
-		  document.getElementById('addEmail').value = document.getElementById('Email').innerHTML
-          document.getElementById('addStreet').value = document.getElementById('Street').innerHTML
+		  document.getElementById('addEmail').value = document.getElementById('Email').innerHTML;
+          document.getElementById('addStreet').value = document.getElementById('Street').innerHTML;
           document.getElementById('addCity').value = document.getElementById('city').innerHTML;
           document.getElementById('addState').value = document.getElementById('state').innerHTML;
           document.getElementById('addZIP').value = document.getElementById('ZIP').innerHTML;
@@ -103,7 +103,23 @@ deleteContact();
 //   Delete Contact.
 function deleteContact()
 {
-
+	var url_delete = 'https://cop4331-9.herokuapp.com/delete';
+	 let contactData = {
+          firstName: document.getElementById('fname').innerHTML,
+          lastName: document.getElementById('lname').innerHTML,
+          phone: document.getElementById('Phone').innerHTML,
+		  email: document.getElementById('Email').innerHTML,
+          street: document.getElementById('Street').innerHTML,
+          city: document.getElementById('city').innerHTML,
+          state: document.getElementById('state').innerHTML,
+          zip: document.getElementById('ZIP').innerHTML
+     }
+	 
+	 $.post(url_delete, contactData, function (res, status) {
+          document.getElementById('Name').innerHTML = 'DELETED';
+     }).fail(function () {
+          displayErr();
+     })
 }
 
 //   Add new Contact Info
