@@ -137,9 +137,8 @@ app.post('/login', function (req, response) {
 					if (same) {
 						req.session.loggedin = true;
 						console.log("redirecting to dash");
-
+id = res.rows[0].id;
 						response.send(res.rows[0], 200);
-
 						response.send(res.rows[0].id);
 
 					} else {
@@ -183,7 +182,7 @@ app.post('/signup', function (req, res) {
 app.post('/add', function (req, res) {
 	console.log("recieving add info:");
 	console.log(req.body);
-	let query= "INSERT INTO contacts (id, fname, lname, phonenumber, email, address, city, state, zipcode) VALUES (\'" + req.body.ID + "\', \'" + req.body.firstName + "\', \'" + req.body.lastName + "\', \'" + req.body.phone + "\', \'" + req.body.email + "\', \'" + req.body.street + "\', \'" + req.body.city + "\', \'" + req.body.state + "\', \'" + req.body.zip + "\');";
+	let query= "INSERT INTO contacts (id, fname, lname, phonenumber, email, address, city, state, zipcode) VALUES (\'" + id + "\', \'" + req.body.firstName + "\', \'" + req.body.lastName + "\', \'" + req.body.phone + "\', \'" + req.body.email + "\', \'" + req.body.street + "\', \'" + req.body.city + "\', \'" + req.body.state + "\', \'" + req.body.zip + "\');";
 	console.log(query);
 				client.query(query, (err, res2) => {   
 					if (err) {
@@ -198,7 +197,7 @@ app.post('/add', function (req, res) {
 app.post('/delete', function (req, res) {
 	console.log("recieving add info:");
 	console.log(req.body);
-	let query= "DELETE FROM contacts WHERE id = \'" + req.body.ID + "\' AND fname = \'" + req.body.firstName + "\' "+
+	let query= "DELETE FROM contacts WHERE id = \'" + id + "\' AND fname = \'" + req.body.firstName + "\' "+
 	"AND lname = \'" + req.body.lastName + "\' AND phonenumber = \'" + req.body.phone + "\' AND email = \'" + req.body.email + "\'"+
 	" AND address = \'" + req.body.street + "\' AND city = \'" + req.body.city + "\' AND state = \'" + req.body.state + "\' AND zipcode = \'" + req.body.zip + "\';";
 	console.log(query);
@@ -215,7 +214,7 @@ app.post('/delete', function (req, res) {
 app.post("/contacts", function (req, res) {
 	console.log("recieving contacts info:")
 	console.log(req.body);
-	let query = 'SELECT * FROM contacts WHERE id =\'' + req.body.ID + '\' AND ((fname || \' \' || lname) LIKE \'' + req.body.search + '%\' OR lname LIKE \'' + req.body.search + '%\');';
+	let query = 'SELECT * FROM contacts WHERE id =\'' + id + '\' AND ((fname || \' \' || lname) LIKE \'' + req.body.search + '%\' OR lname LIKE \'' + req.body.search + '%\');';
 	console.log(query)
 	client.query(query, (err, res2) => {
 		if (err) {
