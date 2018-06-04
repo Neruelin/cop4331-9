@@ -7,6 +7,8 @@ function displayErr () {
      }
 }
 
+var editing = 0;
+
 //   Log in.
 function login()
 {
@@ -88,6 +90,7 @@ function searchContact()
 function editContact()
 {
 deleteContact();
+editing = 1;
  document.getElementById('addFirst').value = document.getElementById('fname').innerHTML;
          document.getElementById('addLast').value = document.getElementById('lname').innerHTML;
           document.getElementById('addPhone').value = document.getElementById('Phone').innerHTML;
@@ -149,6 +152,7 @@ function addContact()
      $.post(url_add, contactData, function (res, status) {
            show('addContact', false);
 		   show('contacts', true);
+		   editing = 0;
      }).fail(function () {
           displayErr();
      })
@@ -158,6 +162,9 @@ function goBack()
 {
            show('addContact', false);
 		   show('contacts', true);
+		   if (editing === 1){
+			   addContact();
+		   }
 }
 
 //   Sign out.
