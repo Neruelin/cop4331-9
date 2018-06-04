@@ -29,21 +29,16 @@ function login()
      console.log(JSON.stringify(userdata));
      $.post(url_login, userdata, function (res, status) {
 		id = res;
+          show('log-in', false);
+          show('loggedIn', true);
+          show('contacts', true);
 	  window.location = '/dashboard';
      }).fail(function () {
           displayErr();
      })
 
 //   **** If login successfull do this....  ****
-     if(status == 200)
-     {
-          //   Hide all login fields
-          show('log-in', false);
-
-          //   Show all Contacts fields
-          show('loggedIn', true);
-          show('contacts', true);
-     }
+    
 }
 
 //   Display new contact fields to user to fill in.

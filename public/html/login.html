@@ -32,6 +32,124 @@
                          <input id="repassword-signup" type="password" class="text-area" placeholder="Re-enter Password">
                          <button id="CreateUser-btn" class="btn" onclick="createAccount();">Create Account</button>
                     </div>
+					<div id="loggedIn">
+
+                         <!-- Frame displaying User contacts, search bar, and Search, Edit,
+                              Add and Delete buttons -->
+                         <div id="contacts" class="contacts">
+                              <div class="search-flexbox">
+                                   <input id="search" type="text" class="text-area search-elements" placeholder="Search">
+                                   <button id="search-btn" class="btn search-elements" onclick="searchContact();">Search</button>
+                              </div>
+                              <div class="extraButtons">
+                                   <button id="add-btn" class="btn" onclick="createContact();">New Contact</button>
+                                   <button id="SignOut-btn" class="btn signOut" onclick="signOut();">Sign Out</button>
+                              </div>
+                              <div class="contact-names">
+
+                              </div>
+                              <div class="contact-info-flex" id = "contact-info-flex">
+                                  <h1 id="Name" class="info"></h1>
+                                  <h3 id="fname" class="hidden-info"></h3>
+								  <h3 id="lname" class="hidden-info"></h3>
+								  <h3 id="city" class="hidden-info"></h3>
+								  <h3 id="state" class="hidden-info"></h3>
+                                         <h3 id="Phone" class="info"></h3>
+                                         <h3 id="Email" class="info"></h3>
+										 <h3 id="Street" class="info"></h3>
+										 <h3 id="CityState" class="info"></h3>
+										 <h3 id="ZIP" class="info"></h3>
+								   <div class="moreButtons">
+								   <button id="prev-btn" class="btn" onclick="prevContact();">Prev</button>
+								   <button id="next-btn" class="btn" onclick="nextContact();">Next</button>
+                                   <button id="edit-btn" class="btn" onclick="editContact();">Edit</button>
+                                   <button id="delete-btn" class="btn signOut" onclick="deleteContact();">Delete</button>
+                              </div>
+                              </div>
+
+                         </div>
+
+                         <!-- Frame displaying all fields for adding contact info -->
+                         <div id="addContact" class="addContact">
+                              <input id="addFirst" class="text-area" placeholder="First Name" type="text">
+                              <input id="addLast" class="text-area" placeholder="Last Name" type="text">
+                              <input id="addPhone" class="text-area" placeholder="Phone" type="text">
+                              <input id="addEmail" class="text-area" placeholder="Email" type="text">
+                              <div id="addAddress" class="address">
+                                   <h2 class="info" >Address</h2>
+                                   <input id="addStreet" class="text-area" placeholder="Street" type="text">
+                                   <input id="addCity" class="text-area" placeholder="City" type="text">
+                                   <div class="stateZIP">
+                                        <select id="addState" class="state" placeholder="State">
+                                             	<option value="AL">Alabama</option>
+                                             	<option value="AK">Alaska</option>
+                                             	<option value="AZ">Arizona</option>
+                                             	<option value="AR">Arkansas</option>
+                                             	<option value="CA">California</option>
+                                             	<option value="CO">Colorado</option>
+                                             	<option value="CT">Connecticut</option>
+                                             	<option value="DE">Delaware</option>
+                                             	<option value="DC">District Of Columbia</option>
+                                             	<option value="FL">Florida</option>
+                                             	<option value="GA">Georgia</option>
+                                             	<option value="HI">Hawaii</option>
+                                             	<option value="ID">Idaho</option>
+                                             	<option value="IL">Illinois</option>
+                                             	<option value="IN">Indiana</option>
+                                             	<option value="IA">Iowa</option>
+                                             	<option value="KS">Kansas</option>
+                                             	<option value="KY">Kentucky</option>
+                                             	<option value="LA">Louisiana</option>
+                                             	<option value="ME">Maine</option>
+                                             	<option value="MD">Maryland</option>
+                                             	<option value="MA">Massachusetts</option>
+                                             	<option value="MI">Michigan</option>
+                                             	<option value="MN">Minnesota</option>
+                                             	<option value="MS">Mississippi</option>
+                                             	<option value="MO">Missouri</option>
+                                             	<option value="MT">Montana</option>
+                                             	<option value="NE">Nebraska</option>
+                                             	<option value="NV">Nevada</option>
+                                             	<option value="NH">New Hampshire</option>
+                                             	<option value="NJ">New Jersey</option>
+                                             	<option value="NM">New Mexico</option>
+                                             	<option value="NY">New York</option>
+                                             	<option value="NC">North Carolina</option>
+                                             	<option value="ND">North Dakota</option>
+                                             	<option value="OH">Ohio</option>
+                                             	<option value="OK">Oklahoma</option>
+                                             	<option value="OR">Oregon</option>
+                                             	<option value="PA">Pennsylvania</option>
+                                             	<option value="RI">Rhode Island</option>
+                                             	<option value="SC">South Carolina</option>
+                                             	<option value="SD">South Dakota</option>
+                                             	<option value="TN">Tennessee</option>
+                                             	<option value="TX">Texas</option>
+                                             	<option value="UT">Utah</option>
+                                             	<option value="VT">Vermont</option>
+                                             	<option value="VA">Virginia</option>
+                                             	<option value="WA">Washington</option>
+                                             	<option value="WV">West Virginia</option>
+                                             	<option value="WI">Wisconsin</option>
+                                             	<option value="WY">Wyoming</option>
+                                        </select>
+                                        <input id="addZIP" class="text-area zip" placeholder="ZIP" type="text">
+                                   </div>
+                                   <button id="addContact-btn" class="btn" onclick="addContact();">Add Contact</button>
+								   <button id="goBack-btn" class="btn signOut" onclick="goBack();">Go Back</button>
+                              </div>
+                         </div>
+
+                         <!-- Prompt when a contact is successfully added -->
+                         <div id="contact-added">
+
+                         </div>
+
+                         <!-- Prompt when contact is successfully deleted -->
+                         <div id="contact-deleted">
+
+                         </div>
+                    </div>
                </div>
           </div>
      </div>

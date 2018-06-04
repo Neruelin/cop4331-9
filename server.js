@@ -140,7 +140,7 @@ app.post('/login', function (req, response) {
 						console.log("redirecting to dash");
 
 						//response.send(res.rows[0], 200);
-						response.status(200).send(res.rows[0]);
+						response.status(200).send(res.rows[0].id);
 
 
 					} else {
