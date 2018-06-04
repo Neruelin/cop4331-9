@@ -12,11 +12,6 @@
 	 flex-direction: column;
 }
 
-.stateZIP{
-     display: flex;
-     flex-direction: row;
-}
-
 .btn{
      display: flex;
      justify-content: center;
@@ -192,8 +187,13 @@ p.info{
      padding-top: 5px;
      padding-bottom: 5px;
      margin-top: 10px;
-     width: 200px;
+     width: 100px;
      height: 40px;
+}
+
+.stateZIP{
+     display: flex;
+     flex-direction: row;
 }
 
 .text-area{
@@ -211,6 +211,10 @@ p.info{
      font-size: 20px;
      color: #555555;
      visibility: visible;
+}
+
+.zip{
+     width: 100px !important;
 }
 
 #log-in{
