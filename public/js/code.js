@@ -9,6 +9,7 @@ function displayErr () {
 var index = 0;
 var editing = 0;
 var results;
+var id = -1;
 //   Log in.
 function login()
 {
@@ -27,6 +28,7 @@ function login()
 
      console.log(JSON.stringify(userdata));
      $.post(url_login, userdata, function (res, status) {
+		id = res;
 	  window.location = '/dashboard';
      }).fail(function () {
           displayErr();
@@ -65,6 +67,7 @@ function searchContact()
 	
      var url_login = 'https://cop4331-9.herokuapp.com/contacts';
 	  let userdata = {
+		  ID: id,
           search: document.getElementById('search').value,   
      }
 	 //document.getElementById('Name').innerHTML = 'AAAAAAAAAAAAAAAAAAAAAAAAA';
@@ -142,6 +145,7 @@ function deleteContact()
 {
 	var url_delete = 'https://cop4331-9.herokuapp.com/delete';
 	 let contactData = {
+		  ID: id,
           firstName: document.getElementById('fname').innerHTML,
           lastName: document.getElementById('lname').innerHTML,
           phone: document.getElementById('Phone').innerHTML,
@@ -165,6 +169,7 @@ function addContact()
      var url_add = 'https://cop4331-9.herokuapp.com/add';
 
      let contactData = {
+		  ID: id,
           firstName: document.getElementById('addFirst').value,
           lastName: document.getElementById('addLast').value,
           phone: document.getElementById('addPhone').value,
