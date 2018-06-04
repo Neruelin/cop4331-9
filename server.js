@@ -169,8 +169,6 @@ app.post('/signup', function (req, res) {
 		client.query(query, (err, res) => {
 			if (err) {
 				console.log(err.stack);
-			} else {
-				console.log(res.rows[0]);
 			}
 		});
 
@@ -257,7 +255,7 @@ app.get('/dashboard', function (req, res) {
 	if (req.session.loggedin) {
 		console.log("Serving dashboard.html");
 		console.log(__dirname);
-		return res.status(200).sendFile(__dirname + '/pusblic/html/dashboard.html');
+		return res.status(200).sendFile(__dirname + '/public/html/dashboard.html');
 		//res2.send("here's the fuckin dashboard, binch.");
 		
 	} else {
