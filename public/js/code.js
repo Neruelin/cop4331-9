@@ -163,7 +163,7 @@ function goBack()
 //   Sign out.
 function signOut()
 {
-     show("loggedIn", false);
+     show('loggedIn', false);
 
      show('log-in', true);
 	 window.location = '/login';
