@@ -152,7 +152,7 @@ app.post('/delete', function (req, res) {
 app.post("/contacts", function (req, res) {
 	console.log("recieving contacts info:")
 	console.log(req.body);
-	let query = 'SELECT * FROM contacts WHERE id =\'' + req.session.userid + '\' AND LOWER(fname || \' \' || lname) LIKE LOWER(\'' + req.body.search + '%\') OR LOWER(lname) LIKE LOWER(\'' + req.body.search + '%\'));';
+	let query = 'SELECT * FROM contacts WHERE id =\'' + req.session.userid + '\' AND (LOWER(fname || \' \' || lname) LIKE LOWER(\'' + req.body.search + '%\') OR LOWER(lname) LIKE LOWER(\'' + req.body.search + '%\'));';
 	console.log(query)
 	client.query(query, (err, res2) => {
 		if (err) {
