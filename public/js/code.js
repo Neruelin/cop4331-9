@@ -107,7 +107,7 @@ function nextContact(){
 
 function prevContact(){
 	
-	index = Math.min(index - 1, 0);
+	index = Math.max(index - 1, 0);
 	var res = results;
 	  document.getElementById('Name').innerHTML = res[index].fname + ' ' + res[index].lname;
 	  document.getElementById('Phone').innerHTML = res[index].phonenumber;
