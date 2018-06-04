@@ -30,9 +30,10 @@
 .contacts{
      display: flex;
      flex-direction: column;
-     padding-left: 100px;
-     padding-right: 100px;
-	 visibility: visible;
+     padding: 100px;
+     visibility: visible;
+     justify-content: center;
+     align-items: center;
 }
 
 .contact-info-flex{
@@ -51,8 +52,9 @@
 
 .extraButtons{
      display: flex;
-     flex-direction: row;
+     flex-direction: column;
 }
+
 .moreButtons{
      display: flex;
      flex-direction: row;
@@ -61,11 +63,8 @@
 .form-block{
      display: flex;
      flex-direction: column;
-     margin-left: auto;
-     margin-right: auto;
+     margin: auto;
 }
-
-
 
 .hero{
      background: url("../media/Home.jpg") no-repeat;
@@ -146,6 +145,7 @@ p.info{
      flex-direction: row;
      justify-content: center;
      visibility: visible;
+     margin: 0 auto;
 
 }
 
@@ -203,6 +203,11 @@ p.info{
 }
 
 #log-in{
+     display: flex;
+     flex-direction: column;
+}
+
+#loggedIn{
      display: flex;
      flex-direction: column;
 }
