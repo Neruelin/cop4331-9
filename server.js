@@ -137,6 +137,7 @@ app.post('/login', function (req, response) {
 					if (same) {
 						req.session.loggedin = true;
 						req.session.id = res.rows[0].id;
+
 						console.log("redirecting to dash");
 
 						//response.send(res.rows[0], 200);
