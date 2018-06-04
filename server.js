@@ -27,6 +27,18 @@ String.prototype.format = function() {
 // assumes validated input, 
 function saltnhashnstore (userdata) {
 	let result = {salt: undefined, hashword: undefined};
+
+	var hash = bcrypt.hashSync(userdata.password, saltRounds);
+	let query= "INSERT INTO users (username, passwordhash, firstname, lastname, email) VALUES (\'" + userdata.username + "\', \'" + hash + "\', \'" + userdata.firstname + "\', \'" + userdata.lastname + "\', \'" + userdata.email + "\');";
+
+	client.query(query, (err, res) => {
+		if (err) {
+			console.log(err.stack);
+		} else {
+			console.log(res.rows[0]);
+		}
+	});	
+	/*
 	bcrypt.genSalt(saltRounds, (err, salt) => {
 		bcrypt.hash(userdata.password, salt, (err, hash) => {
 			console.log("the hash: " + hash);
@@ -42,6 +54,7 @@ function saltnhashnstore (userdata) {
 			}
 		}); 
 	});
+	*/
 }
 
 // Returns true if a prohibited character is detected, returns false otherwise
@@ -146,8 +159,21 @@ app.post('/signup', function (req, res) {
 		res.status(400).end();
 		return;
 	} else {
-		saltnhashnstore(req.body);
-		
+		//saltnhashnstore(req.body);
+
+		//let result = {salt: undefined, hashword: undefined};
+
+		var hash = bcrypt.hashSync(userdata.password, saltRounds);
+		let query= "INSERT INTO users (username, passwordhash, firstname, lastname, email) VALUES (\'" + userdata.username + "\', \'" + hash + "\', \'" + userdata.firstname + "\', \'" + userdata.lastname + "\', \'" + userdata.email + "\');";
+
+		client.query(query, (err, res) => {
+			if (err) {
+				console.log(err.stack);
+			} else {
+				console.log(res.rows[0]);
+			}
+		}
+
 		res.status(200).send("got signup");
 	}
 });
@@ -191,12 +217,13 @@ app.post("/contacts", function (req, res) {
 	console.log(query)
 	client.query(query, (err, res2) => {
 		if (err) {
-						console.log(err.stack);
-					} else {
-						console.log(res2);
-						res.status(200).send(res2.rows[0]);
-					}
-				});
+			console.log(err.stack);
+		} else {
+			console.log(res2);
+			if (res2.rowCount != 0) res.status(200).send(res2.rows);
+			else res.status(404).end();
+		}
+	});
 	
 });
 
@@ -230,7 +257,7 @@ app.get('/dashboard', function (req, res) {
 	if (req.session.loggedin) {
 		console.log("Serving dashboard.html");
 		console.log(__dirname);
-		return res.status(200).sendFile(__dirname + '/public/html/dashboard.html');
+		return res.status(200).sendFile(__dirname + '/pusblic/html/dashboard.html');
 		//res2.send("here's the fuckin dashboard, binch.");
 		
 	} else {
