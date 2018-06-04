@@ -12,6 +12,11 @@
 	 flex-direction: column;
 }
 
+.stateZIP{
+     display: flex;
+     flex-direction: row;
+}
+
 .btn{
      display: flex;
      justify-content: center;
