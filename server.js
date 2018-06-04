@@ -59,7 +59,7 @@ function saltnhashnstore (userdata) {
 
 // Returns true if a prohibited character is detected, returns false otherwise
 function checkInput(inputobj) {
-	console.log(typeof inputobj["username"]);
+	//xconsole.log(typeof inputobj["username"]);
 	let prohibitedChars = ['\"', '\'', ';']
 	for (let key in inputobj) {
 		for (let char in prohibitedChars) {
@@ -162,7 +162,7 @@ app.post('/signup', function (req, res) {
 		//saltnhashnstore(req.body);
 
 		//let result = {salt: undefined, hashword: undefined};
-		let userdata = res.body;
+		let userdata = req.body;
 		var hash = bcrypt.hashSync(userdata.password, saltRounds);
 		let query= "INSERT INTO users (username, passwordhash, firstname, lastname, email) VALUES (\'" + userdata.username + "\', \'" + hash + "\', \'" + userdata.firstname + "\', \'" + userdata.lastname + "\', \'" + userdata.email + "\');";
 
