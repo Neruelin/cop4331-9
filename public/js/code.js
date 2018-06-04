@@ -116,7 +116,7 @@ function deleteContact()
      }
 	 
 	 $.post(url_delete, contactData, function (res, status) {
-          document.getElementById('Name').innerHTML = 'DELETED';
+          show('contact-info-flex', false);
      }).fail(function () {
           displayErr();
      })
