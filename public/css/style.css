@@ -64,6 +64,8 @@
      margin-right: auto;
 }
 
+
+
 .hero{
      background: url("../media/Home.jpg") no-repeat;
      background-size: 100%;
@@ -79,6 +81,17 @@
      width: 100vw;
      margin: 0px;
      padding: 0px;
+}
+
+.hidden-info{
+	display: none;
+     font-family: 'Source Sans Pro', sans-serif;
+     font-weight: 200;
+     color: white;
+     padding-top: 5px;
+     padding-bottom: 5px;
+     margin-bottom: 0px;
+	 visibility: hidden;
 }
 
 h1.info{
