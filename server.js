@@ -225,38 +225,30 @@ app.post("/contacts", function (req, res) {
 	
 });
 
-// for db debuggery
+// dumps user table if logged in
 app.get('/db', function (req, res) {
 	console.log("showing DB results");
-	//console.log(globalSlot);
-	console.log(req.session);
-	client.query('SELECT * FROM users', (err, res2) => { // dump db into variable
-		var dbresult = "";
-		if (err) throw err;
-		console.log(res2);
-		for (let row of res2.rows) {
-			dbresult += JSON.stringify(row) + "\n";
-		}
-		//client.end();
-		console.log(dbresult);
-		res.send(dbresult);
-	});
-
+	if (req.session.loggedin == true) {
+		client.query('SELECT * FROM users', (err, res2) => { // dump db into variable
+			var dbresult = "";
+			if (err) throw err;
+			console.log(res2);
+			for (let row of res2.rows) {
+				dbresult += JSON.stringify(row) + "\n";
+			}
+			console.log(dbresult);
+			res.send(dbresult);
+		});
+	} else {
+		res.status(401).end();
+	}
 });
-
-// app.get('/db1', function (req, res) {
-// 	console.log("showing DB query");
-// 	console.log(globalSlot);
-// 	saltnhashnstore({username:"testuser", firstname:"test", lastname:"user", email:"testuser@test.com", password:"BananaPhone"});
-// 	res.send(globalSlot);	
-// });
 
 app.get('/dashboard', function (req, res) {
 	if (req.session.loggedin) {
 		console.log("Serving dashboard.html");
 		console.log(__dirname);
 		return res.status(200).sendFile(__dirname + '/public/html/dashboard.html');
-		//res2.send("here's the fuckin dashboard, binch.");
 		
 	} else {
 		res.redirect("/login");
