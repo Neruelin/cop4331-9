@@ -135,7 +135,7 @@ app.post('/login', function (req, response) {
 					console.log("password compare: " + same);
 					if (same) {
 						req.session.loggedin = true;
-						req.session.
+						req.session.id = res.rows[0].id;
 						console.log("redirecting to dash");
 
 						//response.send(res.rows[0], 200);
