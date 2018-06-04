@@ -210,7 +210,7 @@ app.post('/delete', function (req, res) {
 
 app.post("/contacts", function (req, res) {
 	console.log("recieving contacts info:")
-	//console.log(req.body);
+	console.log(req.body);
 	let query = 'SELECT * FROM contacts WHERE id =\'' + id + '\' AND ((fname || \' \' || lname) LIKE \'' + req.body.search + '%\' OR lname LIKE \'' + req.body.search + '%\');';
 	console.log(query)
 	client.query(query, (err, res2) => {
@@ -229,7 +229,7 @@ app.post("/contacts", function (req, res) {
 app.get('/db', function (req, res) {
 	console.log("showing DB results");
 	//console.log(globalSlot);
-
+	console.log(req.session);
 	client.query('SELECT * FROM users', (err, res2) => { // dump db into variable
 		var dbresult = "";
 		if (err) throw err;
@@ -244,12 +244,12 @@ app.get('/db', function (req, res) {
 
 });
 
-app.get('/db1', function (req, res) {
-	console.log("showing DB query");
-	console.log(globalSlot);
-	saltnhashnstore({username:"testuser", firstname:"test", lastname:"user", email:"testuser@test.com", password:"BananaPhone"});
-	res.send(globalSlot);	
-});
+// app.get('/db1', function (req, res) {
+// 	console.log("showing DB query");
+// 	console.log(globalSlot);
+// 	saltnhashnstore({username:"testuser", firstname:"test", lastname:"user", email:"testuser@test.com", password:"BananaPhone"});
+// 	res.send(globalSlot);	
+// });
 
 app.get('/dashboard', function (req, res) {
 	if (req.session.loggedin) {
