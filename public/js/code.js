@@ -186,6 +186,13 @@ function addContact()
      $.post(url_add, contactData, function (res, status) {
            show('addContact', false);
 		   show('contacts', true);
+		   clearText('addFirst');
+		   clearText('addLast');
+	       clearText('addPhone');
+		   clearText('addEmail');
+		   clearText('addStreet');
+		   clearText('addCity');
+		   clearText('addZIP');
 		   editing = 0;
      }).fail(function () {
           displayErr();
