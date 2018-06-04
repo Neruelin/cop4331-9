@@ -51,11 +51,11 @@
 
 .extraButtons{
      display: flex;
-     flex-direction: row;
+     flex-direction: column;
 }
 .moreButtons{
      display: flex;
-     flex-direction: column;
+     flex-direction: row;
 }
 
 .form-block{
