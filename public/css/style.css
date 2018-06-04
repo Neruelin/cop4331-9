@@ -33,7 +33,7 @@
      padding-left: 100px;
      padding-right: 100px;
        visibility: visible;
-       margin: auto;
+       margin: 0 auto;
 }
 
 .contact-info-flex{
