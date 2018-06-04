@@ -32,7 +32,8 @@
      flex-direction: column;
      padding-left: 100px;
      padding-right: 100px;
-	 visibility: visible;
+       visibility: visible;
+       margin: auto;
 }
 
 .contact-info-flex{
