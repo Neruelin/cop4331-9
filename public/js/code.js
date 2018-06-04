@@ -189,8 +189,8 @@ function addContact()
 
      //   Post new contact info to create new Contact.
      $.post(url_add, contactData, function (res, status) {
-           show('addContact', false);
-		   show('contacts', true);
+		   
+		   //clear text
 		   clearText('addFirst');
 		   clearText('addLast');
 	       clearText('addPhone');
@@ -198,6 +198,9 @@ function addContact()
 		   clearText('addStreet');
 		   clearText('addCity');
 		   clearText('addZIP');
+		   
+           show('addContact', false);
+		   show('contacts', true);
 		   editing = 0;
      }).fail(function () {
           displayErr();
