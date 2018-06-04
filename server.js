@@ -140,15 +140,11 @@ app.post('/login', function (req, response) {
 
 						response.send(res.rows[0], 200);
 
-						response.send(res.rows[0].id);
-
 					} else {
-						console.log("status 401 ln 122");	
 						response.status(401).end();
 					}
 				});
 			} else {
-		    	console.log("status 400 ln 126");
 				response.status(400).end();
 			}
 		});
