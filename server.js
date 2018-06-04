@@ -12,50 +12,7 @@ const client = new Client({
   ssl: true,
 });
 
-const saltRounds = 10;
-
-let globalSlot = "";
-
-String.prototype.format = function() {
-  a = this;
-  for (k in arguments) {
-    a = a.replace("{" + k + "}", arguments[k])
-  }
-  return a
-}
-
-// assumes validated input, 
-function saltnhashnstore (userdata) {
-	let result = {salt: undefined, hashword: undefined};
-
-	var hash = bcrypt.hashSync(userdata.password, saltRounds);
-	let query= "INSERT INTO users (username, passwordhash, firstname, lastname, email) VALUES (\'" + userdata.username + "\', \'" + hash + "\', \'" + userdata.firstname + "\', \'" + userdata.lastname + "\', \'" + userdata.email + "\');";
-
-	client.query(query, (err, res) => {
-		if (err) {
-			console.log(err.stack);
-		} else {
-			console.log(res.rows[0]);
-		}
-	});	
-	/*
-	bcrypt.genSalt(saltRounds, (err, salt) => {
-		bcrypt.hash(userdata.password, salt, (err, hash) => {
-			console.log("the hash: " + hash);
-			if (hash != undefined) {
-				let query= "INSERT INTO users (username, passwordhash, firstname, lastname, email) VALUES (\'" + userdata.username + "\', \'" + hash + "\', \'" + userdata.firstname + "\', \'" + userdata.lastname + "\', \'" + userdata.email + "\');";
-				client.query(query, (err, res) => {   
-					if (err) {
-						console.log(err.stack);
-					} else {
-						console.log(res.rows[0]);
-					}
-				});
-			}
-		}); 
-	});
-	*/
-}
+const saltRounds = 10;	
 
 // Returns true if a prohibited character is detected, returns false otherwise
 function checkInput(inputobj) {
@@ -69,22 +26,6 @@ function checkInput(inputobj) {
 	}}}
 	return false;
 }
-
-
-	/*client.query('SELECT * FROM usertable', (err, res) => { // dump db into variable
-		var dbresult = "";
-		if (err) throw err;
-		console.log(res);
-	});*/
-// client.connect();
-
-// client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-//   if (err) throw err;
-//   for (let row of res.rows) {
-//     console.log(JSON.stringify(row));
-//   }
-//   client.end();
-// });
 
 const app = express(); // main app object
 
@@ -140,7 +81,6 @@ app.post('/login', function (req, response) {
 
 						console.log("redirecting to dash");
 
-						//response.send(res.rows[0], 200);
 						response.status(200).send(res.rows[0]);
 
 
@@ -163,9 +103,6 @@ app.post('/signup', function (req, res) {
 		res.status(400).end();
 		return;	
 	} else {
-		//saltnhashnstore(req.body);
-
-		//let result = {salt: undefined, hashword: undefined};
 		let userdata = req.body;
 		var hash = bcrypt.hashSync(userdata.password, saltRounds);
 		let query= "INSERT INTO users (username, passwordhash, firstname, lastname, email) VALUES (\'" + userdata.username + "\', \'" + hash + "\', \'" + userdata.firstname + "\', \'" + userdata.lastname + "\', \'" + userdata.email + "\');";
