@@ -186,6 +186,7 @@ p.info{
      color: Black;
      padding-top: 5px;
      padding-bottom: 5px;
+     padding-right: 5px;
      margin-top: 10px;
      width: 100px;
      height: 40px;
@@ -215,7 +216,6 @@ p.info{
 
 .zip{
      width: 100px !important;
-     padding-right: 5px;
 }
 
 #log-in{
