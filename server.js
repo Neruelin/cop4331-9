@@ -125,7 +125,6 @@ app.post('/login', function (req, response) {
     console.log(req.body);
     if ( req.body.username.length > 50 ||
     	 checkInput(req.body)) {
-    	console.log("status 400 ln 107");
     	response.status(400).end();
     	return;
     } else {	
