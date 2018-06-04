@@ -69,6 +69,15 @@ function searchContact()
 	  $.post(url_login, userdata, function (res, status) {
       show('contact-info-flex', true);
 	  document.getElementById('Name').innerHTML = res.fname + ' ' + res.lname;
+	  document.getElementById('Phone').innerHTML = res.phonenumber;
+	  document.getElementById('Email').innerHTML = res.email;
+	  document.getElementById('Street').innerHTML = res.address;
+	  document.getElementById('CityState').innerHTML = res.city + ' ' + res.state;
+	  document.getElementById('ZIP').innerHTML = res.zipcode;
+	  document.getElementById('fname').innerHTML = res.fname;
+	  document.getElementById('lname').innerHTML = res.lname;
+	  document.getElementById('city').innerHTML = res.city;
+	  document.getElementById('state').innerHTML = res.state;
      }).fail(function () {
           displayErr();
      })
