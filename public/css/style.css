@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400');
 
 .address{
-     display: none;
-     visibility: hidden;
+     display: flex;
+     visibility: visible;
 	flex-direction: column;
 }
 
