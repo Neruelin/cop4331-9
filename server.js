@@ -114,6 +114,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/login', function (req, res) {
+	req.session.loggedin = false;
 	console.log("Serving login.html");
 	res.sendFile(__dirname + '/public/html/login.html');
 });
@@ -135,11 +136,11 @@ app.post('/login', function (req, response) {
 					console.log("password compare: " + same);
 					if (same) {
 						req.session.loggedin = true;
-						req.session.
+						//req.session.
 						console.log("redirecting to dash");
 
 						//response.send(res.rows[0], 200);
-						response.send(res.rows[0].id, 200);
+						response.status(200).send(res.rows[0]);
 
 
 					} else {
