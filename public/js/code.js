@@ -72,7 +72,7 @@ function searchContact()
 	  document.getElementById('Phone').innerHTML = res.phonenumber;
 	  document.getElementById('Email').innerHTML = res.email;
 	  document.getElementById('Street').innerHTML = res.address;
-	  document.getElementById('CityState').innerHTML = res.city + ' ' + res.state;
+	  document.getElementById('CityState').innerHTML = res.city + ', ' + res.state;
 	  document.getElementById('ZIP').innerHTML = res.zipcode;
 	  document.getElementById('fname').innerHTML = res.fname;
 	  document.getElementById('lname').innerHTML = res.lname;
@@ -87,7 +87,17 @@ function searchContact()
 //   Edit Contact Info.
 function editContact()
 {
-
+deleteContact();
+ document.getElementById('addFirst').value = document.getElementById('fname').innerHTML;
+         document.getElementById('addLast').value = document.getElementById('lname').innerHTML;
+          document.getElementById('addPhone').value = document.getElementById('Phone').innerHTML;
+		  document.getElementById('addEmail').value = document.getElementById('Email').innerHTML
+          document.getElementById('addStreet').value = document.getElementById('Street').innerHTML
+          document.getElementById('addCity').value = document.getElementById('city').innerHTML;
+          document.getElementById('addState').value = document.getElementById('state').innerHTML;
+          document.getElementById('addZIP').value = document.getElementById('ZIP').innerHTML;
+		   show('addContact', true);
+	 show('contacts', false);
 }
 
 //   Delete Contact.
