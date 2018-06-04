@@ -215,6 +215,7 @@ p.info{
 
 .zip{
      width: 100px !important;
+     padding-right: 5px;
 }
 
 #log-in{
