@@ -6,9 +6,9 @@ function displayErr () {
           $("#error").slideToggle();
      }
 }
-
+var index = 0;
 var editing = 0;
-
+var results;
 //   Log in.
 function login()
 {
@@ -55,7 +55,7 @@ function createContact()
 function displayContact()
 {
 	 
-	  //doucment.getElementById('Name').value = res.fName + ' ' + res.lName;
+	  //doucment.getElementById('Name').value = res[0].fName + ' ' + res[0].lName;
 	//var url_login = 'https://cop4331-9.herokuapp.com/contacts';
 }
 
@@ -71,22 +71,55 @@ function searchContact()
 	  $.post(url_login, userdata, function (res, status) {
           console.log(res);
       show('contact-info-flex', true);
-	  document.getElementById('Name').innerHTML = res.fname + ' ' + res.lname;
-	  document.getElementById('Phone').innerHTML = res.phonenumber;
-	  document.getElementById('Email').innerHTML = res.email;
-	  document.getElementById('Street').innerHTML = res.address;
-	  document.getElementById('CityState').innerHTML = res.city + ', ' + res.state;
-	  document.getElementById('ZIP').innerHTML = res.zipcode;
-	  document.getElementById('fname').innerHTML = res.fname;
-	  document.getElementById('lname').innerHTML = res.lname;
-	  document.getElementById('city').innerHTML = res.city;
-	  document.getElementById('state').innerHTML = res.state;
+	  index = 0;
+	  results = res;
+	  document.getElementById('Name').innerHTML = res[0].fname + ' ' + res[0].lname;
+	  document.getElementById('Phone').innerHTML = res[0].phonenumber;
+	  document.getElementById('Email').innerHTML = res[0].email;
+	  document.getElementById('Street').innerHTML = res[0].address;
+	  document.getElementById('CityState').innerHTML = res[0].city + ', ' + res[0].state;
+	  document.getElementById('ZIP').innerHTML = res[0].zipcode;
+	  document.getElementById('fname').innerHTML = res[0].fname;
+	  document.getElementById('lname').innerHTML = res[0].lname;
+	  document.getElementById('city').innerHTML = res[0].city;
+	  document.getElementById('state').innerHTML = res[0].state;
      }).fail(function () {
           displayErr();
      })
 	 
 }
 
+function nextContact(){
+	
+	index = Math.min(index + 1, results.length - 1);
+	var res = results;
+	  document.getElementById('Name').innerHTML = res[index].fname + ' ' + res[index].lname;
+	  document.getElementById('Phone').innerHTML = res[index].phonenumber;
+	  document.getElementById('Email').innerHTML = res[index].email;
+	  document.getElementById('Street').innerHTML = res[index].address;
+	  document.getElementById('CityState').innerHTML = res[index].city + ', ' + res[index].state;
+	  document.getElementById('ZIP').innerHTML = res[index].zipcode;
+	  document.getElementById('fname').innerHTML = res[index].fname;
+	  document.getElementById('lname').innerHTML = res[index].lname;
+	  document.getElementById('city').innerHTML = res[index].city;
+	  document.getElementById('state').innerHTML = res[index].state;
+}
+
+function prevContact(){
+	
+	index = Math.min(index - 1, 0);
+	var res = results;
+	  document.getElementById('Name').innerHTML = res[index].fname + ' ' + res[index].lname;
+	  document.getElementById('Phone').innerHTML = res[index].phonenumber;
+	  document.getElementById('Email').innerHTML = res[index].email;
+	  document.getElementById('Street').innerHTML = res[index].address;
+	  document.getElementById('CityState').innerHTML = res[index].city + ', ' + res[index].state;
+	  document.getElementById('ZIP').innerHTML = res[index].zipcode;
+	  document.getElementById('fname').innerHTML = res[index].fname;
+	  document.getElementById('lname').innerHTML = res[index].lname;
+	  document.getElementById('city').innerHTML = res[index].city;
+	  document.getElementById('state').innerHTML = res[index].state;
+}
 //   Edit Contact Info.
 function editContact()
 {

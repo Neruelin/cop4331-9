@@ -218,7 +218,7 @@ app.post("/contacts", function (req, res) {
 			console.log(err.stack);
 		} else {
 			console.log(res2);
-			if (res2.rowCount != 0) res.status(200).send(res2.rows[0]); //you fucking forgot to put the [0] index. we'll maybe take this out eventually
+			if (res2.rowCount != 0) res.status(200).send(res2.rows); //you fucking forgot to put the [0] index. we'll maybe take this out eventually
 			else res.status(404).end();
 		}
 	});
