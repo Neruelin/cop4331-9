@@ -64,7 +64,7 @@ function checkInput(inputobj) {
 	for (let key in inputobj) {
 		for (let char in prohibitedChars) {
 			if ((inputobj[key]).indexOf(char) > -1) {
-				console.log("invalid char of: " + inputobj[key] + " char: " + prohibited[char]);
+				console.log("invalid char of: " + inputobj[key] + " char: " + prohibitedChars[char]);
 				return true;
 	}}}
 	return false;
