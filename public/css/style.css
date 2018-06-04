@@ -214,7 +214,7 @@ p.info{
 }
 
 .zip{
-     width: 100px;
+     width: 100px !important;
 }
 
 #log-in{
