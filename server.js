@@ -162,7 +162,7 @@ app.post('/signup', function (req, res) {
 		//saltnhashnstore(req.body);
 
 		//let result = {salt: undefined, hashword: undefined};
-
+		let userdata = res.body;
 		var hash = bcrypt.hashSync(userdata.password, saltRounds);
 		let query= "INSERT INTO users (username, passwordhash, firstname, lastname, email) VALUES (\'" + userdata.username + "\', \'" + hash + "\', \'" + userdata.firstname + "\', \'" + userdata.lastname + "\', \'" + userdata.email + "\');";
 
