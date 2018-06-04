@@ -172,7 +172,7 @@ app.post('/signup', function (req, res) {
 			} else {
 				console.log(res.rows[0]);
 			}
-		}
+		});
 
 		res.status(200).send("got signup");
 	}
