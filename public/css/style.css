@@ -37,6 +37,7 @@
 
 .contact-info-flex{
      display: flex;
+	 flex-direction: column;
      visibility: hidden;
      width: 33vw;
      height: 66vh;
@@ -107,14 +108,12 @@ h3.info{
 }
 
 .info{
-	display:inline;
      font-family: 'Source Sans Pro', sans-serif;
      font-weight: 200;
      color: white;
      padding-top: 5px;
      padding-bottom: 5px;
      margin-bottom: 0px;
-	 visibility: visible;
 }
 
 p.info{
