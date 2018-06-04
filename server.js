@@ -138,6 +138,9 @@ app.post('/login', function (req, response) {
 						req.session.loggedin = true;
 						console.log("redirecting to dash");
 						response.send(res.rows[0], 200);
+=======
+						response.send(res.rows[0].id);
+>>>>>>> 0d29010a8a9c7b3423b0774e76ce6240d558c658
 					} else {
 						console.log("status 401 ln 122");	
 						response.status(401).end();
