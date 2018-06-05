@@ -75,7 +75,7 @@ app.post('/login', function (req, response) {
     } else {	
 		let query = 'SELECT * FROM users WHERE username=\'' + req.body.username +'\';';
 		client.query(query, (err, res) => {
-			if (res.rows.length == 1) {
+			if (res.rowCount == 1) {
 				bcrypt.compare(req.body.password, res.rows[0].passwordhash, (err2, same) => {
 					console.log("password compare: " + same);
 					if (same) {
