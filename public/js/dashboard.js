@@ -170,6 +170,7 @@ function addContact()
      }).fail(function () {
           displayErr();
      })
+     loadContacts();
 }
 
 function goBack()
