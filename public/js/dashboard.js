@@ -16,6 +16,9 @@ function loadContacts () {
 		console.log(res);
 		show('contact-info-flex', true);
 		results = res;
+		results.sort((a, b) => {
+			return (a.firstName + " " + a.lastName).localeCompare(b.firstName + " " + b.lastName);
+		})
 		index = 0;
 		removeFilter();
 		displayContact();
