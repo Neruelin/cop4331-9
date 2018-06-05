@@ -57,6 +57,12 @@
 	padding-left: 10px;
 }
 
+.index {
+     align-content: center;
+     font-family: 'Source Sans Pro', sans-serif;
+     color: white;
+}
+
 .extraButtons{
      display: flex;
      flex-direction: row;
