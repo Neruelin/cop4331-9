@@ -78,7 +78,7 @@ app.post('/login', function (req, response) {
 						req.session.loggedin = true;
 						req.session.userid = res.rows[0].id;
 						console.log("redirecting to dash");
-						response.status(200).end();
+						response.redirect("/dashboard");
 					} else {
 						response.status(401).end();
 					}
