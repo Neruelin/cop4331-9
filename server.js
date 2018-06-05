@@ -100,7 +100,7 @@ app.post('/login', function (req, response) {
     }
 });
 
-app.get('/logout', function (req, response) {
+app.get('/logout', function (req, res) {
 	req.session.loggedin = false;
 	req.session.id = undefined;
 	res.redirect("/login");
