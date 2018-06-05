@@ -55,7 +55,7 @@ function searchContact()
     var url_login = 'https://cop4331-9.herokuapp.com/contacts';
 	let search = $('#search').val();
 	$("#filter-text").text("Filtered by the term: \"" + search + "\".");
-	$("$filter-info").show();
+	$("#filter-info").show();
 	search = new RegExp(search);
 	filteredResults = [];
 	for (var key in results) {
