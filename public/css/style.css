@@ -55,6 +55,8 @@
      backdrop-filter: blur(5px);
      background-color: #555555AA;
 	padding-left: 10px;
+	justify-content: center;
+	align-content: center;
 }
 
 .index {
