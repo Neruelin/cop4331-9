@@ -47,6 +47,7 @@ app.use('/css', 	express.static('public/css/'));
 app.use('/js', 		express.static('public/js/'));
 
 app.use(function(req, res, next) {
+	console.log(req.url);
 	console.log(req.session.loggedin);
 	if (req.url != "/" && req.url != "/login") if (req.session.loggedin == true) res.redirect("/");
 	next();
@@ -168,7 +169,6 @@ app.get('/db', function (req, res) {
 });
 
 app.get('/dashboard', function (req, res) {
-	console.log("Serving dashboard.html");
 	return res.status(200).sendFile(__dirname + '/public/html/dashboard.html');
 });
 
