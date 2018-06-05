@@ -37,9 +37,11 @@ app.use(bodyparser.urlencoded({extended: true}))
 app.use(cookieParser());
 app.use(session({secret: csprng(256, 36)}));
 app.use(function (req, res, next) {
-	console.log(req.body);
-	checkInput(req.body)
-	next();
+	if (checkInput(req.body)) {
+		res.status(400).end();
+	} else {
+		next();
+	}
 });
 
 /* defining static content directories
