@@ -37,16 +37,9 @@ app.use(cookieParser());
 app.use(session({secret: csprng(256, 36)}));
 app.use(function(req, res, next) {
 	console.log(req.session.loggedin);
-	if (req.url != "/" && req.url != "/login"){
-		if (req.session.loggedin == true) {
-			res.redirect("/");
-		} else {
-			next();
-		}
-	} else {
-		next();
-	}
-})
+	if (req.url != "/" && req.url != "/login") if (req.session.loggedin == true) res.redirect("/");
+	next();
+});
 
 /* defining static content directories
    Eg: accessing "domain.com/views" will actually access "server_directory/public/html/"
