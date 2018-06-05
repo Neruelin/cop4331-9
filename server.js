@@ -46,19 +46,25 @@ app.use('/html', 	express.static('public/html/'));
 app.use('/css', 	express.static('public/css/'));
 app.use('/js', 		express.static('public/js/'));
 
-app.use(function(req, res, next) {
-	console.log(req.url);
-	console.log(req.session.loggedin);
-	if (req.url != "/" && req.url != "/login") if (req.session.loggedin == true) res.redirect("/");
-	next();
-});
-
 // routes
 client.connect(); // connect to db
 // for homepage get requests
 app.get('/', function (req, res) {
+	if (req.session.loggedin != true) {
 		console.log("Serving login.html");
 		res.sendFile(__dirname + '/public/html/login.html');
+	} else {
+		res.redirect("/dashboard");
+	}
+});
+
+app.get('/login', function (req, res) {
+	if (req.session.loggedin != true) {
+		console.log("Serving login.html");
+		res.sendFile(__dirname + '/public/html/login.html');
+	} else {
+		res.redirect("/dashboard");
+	}
 });
 
 app.post('/login', function (req, response) {
@@ -76,8 +82,7 @@ app.post('/login', function (req, response) {
 						req.session.loggedin = true;
 						req.session.userid = res.rows[0].id;
 						console.log("redirecting to dash");
-						response.redirect("/dashboard");
-						console.log("did it?");
+						response.status(200).send(res.rows[0]);
 					} else {
 						response.status(401).end();
 					}
@@ -115,66 +120,82 @@ app.post('/signup', function (req, res) {
 
 app.post('/add', function (req, res) {
 	console.log("recieving add info:");
-	let query = "INSERT INTO contacts (id, fname, lname, phonenumber, email, address, city, state, zipcode) VALUES (\'" + req.session.userid+ "\', \'" + req.body.firstName + "\', \'" + req.body.lastName + "\', \'" + req.body.phone + "\', \'" + req.body.email + "\', \'" + req.body.street + "\', \'" + req.body.city + "\', \'" + req.body.state + "\', \'" + req.body.zip + "\');";
-	console.log(query);
-		client.query(query, (err, res2) => {   
-			if (err) {
-				console.log(err.stack);
-			} else {
-				console.log(res2);
-			}
-		});
-	res.status(200).end();
+	if (req.session.loggedin) {
+		let query = "INSERT INTO contacts (id, fname, lname, phonenumber, email, address, city, state, zipcode) VALUES (\'" + req.session.userid+ "\', \'" + req.body.firstName + "\', \'" + req.body.lastName + "\', \'" + req.body.phone + "\', \'" + req.body.email + "\', \'" + req.body.street + "\', \'" + req.body.city + "\', \'" + req.body.state + "\', \'" + req.body.zip + "\');";
+		console.log(query);
+			client.query(query, (err, res2) => {   
+				if (err) {
+					console.log(err.stack);
+				} else {
+					console.log(res2);
+				}
+			});
+		res.status(200).end();
+	} else {
+		res.redirect("/login");
+	}
 });
 
 app.post('/delete', function (req, res) {
 	console.log("recieving add info:");
-	//let query = "DELETE FROM contacts WHERE id = \'" + req.session.userid + "\' AND fname = \'" + req.body.firstName + "\' "+
-	//"AND lname = \'" + req.body.lastName + "\' AND phonenumber = \'" + req.body.phone + "\' AND email = \'" + req.body.email + "\'"+
-	//" AND address = \'" + req.body.street + "\' AND city = \'" + req.body.city + "\' AND state = \'" + req.body.state + "\' AND zipcode = \'" + req.body.zip + "\';";
-	let query = "DELETE FROM contacts WHERE id=\'" + req.session.userid + "\' AND contactId=\'" + req.body + "\';";
-	client.query(query, (err, res2) => {   
-		if (err) {
-			console.log(err.stack);
-		}
-	});
-	res.status(200).end();
+	if (req.session.loggedin) {
+		//let query = "DELETE FROM contacts WHERE id = \'" + req.session.userid + "\' AND fname = \'" + req.body.firstName + "\' "+
+		//"AND lname = \'" + req.body.lastName + "\' AND phonenumber = \'" + req.body.phone + "\' AND email = \'" + req.body.email + "\'"+
+		//" AND address = \'" + req.body.street + "\' AND city = \'" + req.body.city + "\' AND state = \'" + req.body.state + "\' AND zipcode = \'" + req.body.zip + "\';";
+		let query = "DELETE FROM contacts WHERE id=\'" + req.session.userid + "\' AND contactId=\'" + req.body + "\';";
+		client.query(query, (err, res2) => {   
+			if (err) {
+				console.log(err.stack);
+			}
+		});
+		res.status(200).end();
+	} else {
+		res.redirect("/login");
+	}
 });
 
 app.post("/contacts", function (req, res) {
 	console.log("recieving contacts info:")
-	let query = 'SELECT * FROM contacts WHERE id =\'' + req.session.userid + '\';';
-	client.query(query, (err, res2) => {
-		if (err) {
-			console.log(err.stack);
-		} else {
-			if (res2.rowCount != 0) res.status(200).send(res2.rows);
-			else res.status(404).end();
-		}
-	});
+	if (req.session.loggedin) {
+		let query = 'SELECT * FROM contacts WHERE id =\'' + req.session.userid + '\';';
+		client.query(query, (err, res2) => {
+			if (err) {
+				console.log(err.stack);
+			} else {
+				if (res2.rowCount != 0) res.status(200).send(res2.rows);
+				else res.status(404).end();
+			}
+		});
+	} else {
+		res.redirect("/login");
+	}
 });
 
 // dumps user table if logged in
 app.get('/db', function (req, res) {
 	console.log("showing DB results");
-	client.query('SELECT * FROM users', (err, res2) => { // dump db into variable
-		var dbresult = "";
-		if (err) throw err;
-		console.log(res2);
-		for (let row of res2.rows) {
-			dbresult += JSON.stringify(row) + "\n";
-		}
-		console.log(dbresult);
-		res.send(dbresult);
-	});
+	if (req.session.loggedin == true) {
+		client.query('SELECT * FROM users', (err, res2) => { // dump db into variable
+			var dbresult = "";
+			if (err) throw err;
+			console.log(res2);
+			for (let row of res2.rows) {
+				dbresult += JSON.stringify(row) + "\n";
+			}
+			console.log(dbresult);
+			res.send(dbresult);
+		});
+	} else {
+		res.redirect("/login");
+	}
 });
 
 app.get('/dashboard', function (req, res) {
-	try {
-		res.sendFile(__dirname + '/public/html/dashboard.html');
-	} catch (err) {
-		console.log("hmm");
-		console.log(err);
+	if (req.session.loggedin) {
+		console.log("Serving dashboard.html");
+		return res.status(200).sendFile(__dirname + '/public/html/dashboard.html');
+	} else {
+		res.redirect("/login");
 	}
 });
 
