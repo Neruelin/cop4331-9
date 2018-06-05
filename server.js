@@ -35,11 +35,6 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(cookieParser());
 app.use(session({secret: csprng(256, 36)}));
-app.use(function(req, res, next) {
-	console.log(req.session.loggedin);
-	if (req.url != "/" && req.url != "/login") if (req.session.loggedin == true) res.redirect("/");
-	next();
-});
 
 /* defining static content directories
    Eg: accessing "domain.com/views" will actually access "server_directory/public/html/"
@@ -50,6 +45,12 @@ app.use('/media', 	express.static('public/media/'));
 app.use('/html', 	express.static('public/html/'));
 app.use('/css', 	express.static('public/css/'));
 app.use('/js', 		express.static('public/js/'));
+
+app.use(function(req, res, next) {
+	console.log(req.session.loggedin);
+	if (req.url != "/" && req.url != "/login") if (req.session.loggedin == true) res.redirect("/");
+	next();
+});
 
 // routes
 client.connect(); // connect to db
