@@ -36,6 +36,7 @@ app.use(bodyparser.urlencoded({extended: true}))
 app.use(cookieParser());
 app.use(session({secret: csprng(256, 36)}));
 app.use(function(req, res, next) {
+	console.log(req.url);
 	if (req.session.loggedin == true) {
 		res.redirect("/");
 	} else {
@@ -80,7 +81,7 @@ app.post('/login', function (req, response) {
 						req.session.loggedin = true;
 						req.session.userid = res.rows[0].id;
 						console.log("redirecting to dash");
-						response.status(200).send(res.rows[0]);
+						response.status(200).end();
 					} else {
 						response.status(401).end();
 					}
