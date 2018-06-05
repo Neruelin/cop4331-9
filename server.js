@@ -170,7 +170,12 @@ app.get('/db', function (req, res) {
 });
 
 app.get('/dashboard', function (req, res) {
-	return res.sendFile(__dirname + '/public/html/dashboard.html');
+	try {
+		res.sendFile(__dirname + '/public/html/dashboard.html');
+	} catch (err) {
+		console.log("hmm");
+		console.log(err);
+	}
 });
 
 // start app on port
