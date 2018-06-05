@@ -53,7 +53,7 @@ function displayContact()
 function searchContact()
 {
     var url_login = 'https://cop4331-9.herokuapp.com/contacts';
-	let search = $('#search').value;
+	let search = $('#search').val();
 	$("#filter-text").innerHTML() = "Filtered by the term: \"" + search + "\".";
 	$("$filter-info").show();
 	search = new RegExp(search);
@@ -98,14 +98,14 @@ function editContact()
 {
 	res = results[index];
 
- 	$('#addFirst').value = res.fname;
-	$('#addLast').value = res.lname;
-	$('#addPhone').value = res.phonenumber;
-	$('#addEmail').value = res.email;
-	$('#addStreet').value = res.address;
-	$('#addCity').value = res.city;
-	$('#addState').value = res.state;
-	$('#addZIP').value = res.zipcode;
+ 	$('#addFirst').val() = res.fname;
+	$('#addLast').val() = res.lname;
+	$('#addPhone').val() = res.phonenumber;
+	$('#addEmail').val() = res.email;
+	$('#addStreet').val() = res.address;
+	$('#addCity').val() = res.city;
+	$('#addState').val() = res.state;
+	$('#addZIP').val() = res.zipcode;
 
 	editing = 1;
 	show('addContact', true);
@@ -135,14 +135,14 @@ function addContact()
      var url_add = 'https://cop4331-9.herokuapp.com/add';
 
      let contactData = {
-          firstName: $('#addFirst').value.trim(),
-          lastName: $('#addLast').value.trim(),
-          phone: $('#addPhone').value,
-		  email: $('#addEmail').value,
-          street: $('#addStreet').value,
-          city: $('#addCity').value,
-          state: $('#addState').value,
-          zip: $('#addZIP').value,
+          firstName: $('#addFirst').val().trim(),
+          lastName: $('#addLast').val().trim(),
+          phone: $('#addPhone').val(),
+		  email: $('#addEmail').val(),
+          street: $('#addStreet').val(),
+          city: $('#addCity').val(),
+          state: $('#addState').val(),
+          zip: $('#addZIP').val(),
      }
 
      //   Either First or Last name fields must be filled in to successfully

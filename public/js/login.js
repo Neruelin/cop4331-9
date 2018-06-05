@@ -3,11 +3,11 @@ const urlBase = 'https://cop4331-9.herokuapp.com'
 function login()
 {
      var url_login = 'https://cop4331-9.herokuapp.com/login';
-     var user = $('#user-login').value;
+     var user = $('#user-login').val();
 
      let userdata = {
-          username: $('#user-login').value,
-          password: $('#password-login').value
+          username: $('#user-login').val(),
+          password: $('#password-login').val()
      }
 
      if (userdata.username == "" || userdata.password == "") {
@@ -56,11 +56,11 @@ function createAccount()
 
      //   Initialize userdata
      let userdata = {
-          firstname: $('#firstName').value,
-          lastname: $('#lastName').value,
-          email: $('#email').value,
-          username: $('#user-signup').value,
-	  password: $('#password-signup').value
+          firstname: $('#firstName').val(),
+          lastname: $('#lastName').val(),
+          email: $('#email').val(),
+          username: $('#user-signup').val(),
+	  password: $('#password-signup').val()
      }
 
      $.post("/signup", userdata, function (res, status) {
