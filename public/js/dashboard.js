@@ -171,6 +171,7 @@ function addContact()
            show('addContact', false);
 		   show('contacts', true);
 		   editing = 0;
+		   loadContacts();
      }).fail(function () {
           displayErr();
      })
