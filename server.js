@@ -36,9 +36,12 @@ app.use(bodyparser.urlencoded({extended: true}))
 app.use(cookieParser());
 app.use(session({secret: csprng(256, 36)}));
 app.use(function(req, res, next) {
-	console.log(req.url);
-	if (req.session.loggedin == true) {
-		res.redirect("/");
+	if (req.url != "/" && req.url != "/login"){
+		if (req.session.loggedin == true) {
+			res.redirect("/");
+		} else {
+			next();
+		}
 	} else {
 		next();
 	}
