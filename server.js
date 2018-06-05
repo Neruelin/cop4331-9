@@ -143,6 +143,7 @@ app.post('/delete', function (req, res) {
 		//"AND lname = \'" + req.body.lastName + "\' AND phonenumber = \'" + req.body.phone + "\' AND email = \'" + req.body.email + "\'"+
 		//" AND address = \'" + req.body.street + "\' AND city = \'" + req.body.city + "\' AND state = \'" + req.body.state + "\' AND zipcode = \'" + req.body.zip + "\';";
 		let query = "DELETE FROM contacts WHERE id=\'" + req.session.userid + "\' AND contactId=" + req.body + ";";
+		console.log(query);
 		client.query(query, (err, res2) => {   
 			if (err) {
 				console.log(err.stack);
