@@ -121,7 +121,7 @@ function deleteContact()
 {
 	var url_delete = 'https://cop4331-9.herokuapp.com/delete';
 	 
-	 $.post(url_delete, results[index].contactId, function (res, status) {
+	 $.post(url_delete, {"id":results[index].contactId}, function (res, status) {
           show('contact-info-flex', false);
      }).fail(function () {
           displayErr();
