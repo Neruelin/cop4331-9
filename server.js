@@ -94,6 +94,12 @@ app.post('/login', function (req, response) {
     }
 });
 
+app.post('/logout', function (req, response) {
+	req.session.loggedin = false;
+	req.session.id = undefined;
+	res.redirect("/login");
+})
+
 app.post('/signup', function (req, res) {
 	console.log("recieving signup info:");
 	if (checkInput(req.body)) {
