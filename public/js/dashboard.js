@@ -37,16 +37,16 @@ function displayContact()
 {
 	var res = results[index];
 
-	$('#Name').innerHTML = res.fname + ' ' + res.lname;
-	$('#Phone').innerHTML = res.phonenumber;
-	$('#Email').innerHTML = res.email;
-	$('#Street').innerHTML = res.address;
-	$('#CityState').innerHTML = res.city + ', ' + res.state;
-	$('#ZIP').innerHTML = res.zipcode;
-	$('#fname').innerHTML = res.fname;
-	$('#lname').innerHTML = res.lname;
-	$('#city').innerHTML = res.city;
-	$('#state').innerHTML = res.state;
+	$('#Name').text(res.fname + ' ' + res.lname);
+	$('#Phone').text(res.phonenumber);
+	$('#Email').text(res.email);
+	$('#Street').text(res.address);
+	$('#CityState').text(res.city + ', ' + res.state);
+	$('#ZIP').text(res.zipcode);
+	$('#fname').text(res.fname);
+	$('#lname').text(res.lname);
+	$('#city').text(res.city);
+	$('#state').text(res.state);
 }
 
 //   Search for contact by Name.
@@ -54,7 +54,7 @@ function searchContact()
 {
     var url_login = 'https://cop4331-9.herokuapp.com/contacts';
 	let search = $('#search').val();
-	$("#filter-text").innerHTML() = "Filtered by the term: \"" + search + "\".";
+	$("#filter-text").text("Filtered by the term: \"" + search + "\".");
 	$("$filter-info").show();
 	search = new RegExp(search);
 	filteredResults = [];
@@ -98,14 +98,14 @@ function editContact()
 {
 	res = results[index];
 
- 	$('#addFirst').val() = res.fname;
-	$('#addLast').val() = res.lname;
-	$('#addPhone').val() = res.phonenumber;
-	$('#addEmail').val() = res.email;
-	$('#addStreet').val() = res.address;
-	$('#addCity').val() = res.city;
-	$('#addState').val() = res.state;
-	$('#addZIP').val() = res.zipcode;
+ 	$('#addFirst').val(res.fname);
+	$('#addLast').val(res.lname);
+	$('#addPhone').val(res.phonenumber);
+	$('#addEmail').val(res.email);
+	$('#addStreet').val(res.address);
+	$('#addCity').val(res.city);
+	$('#addState').val(res.state);
+	$('#addZIP').val(res.zipcode);
 
 	editing = 1;
 	show('addContact', true);
