@@ -40,6 +40,7 @@ function displayContact()
 {
 	var res = results[index];
 
+	$('#indexed').text((index+1) + "/" + results.length)
 	$('#Name').text(res.fname + ' ' + res.lname);
 	$('#Phone').text(res.phonenumber);
 	$('#Email').text(res.email);
