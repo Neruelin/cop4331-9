@@ -1,3 +1,9 @@
+//	Toggle error
+function displayErr () {
+     if ($("#error").css("display") == "none"){
+          $("#error").slideToggle();
+     }
+}
 
 //   Turn elements display/visiblity on/off.  (Credit Professor Leinecker)
 function show( elementId, showState )

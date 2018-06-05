@@ -139,9 +139,10 @@ app.post('/add', function (req, res) {
 app.post('/delete', function (req, res) {
 	console.log("recieving add info:");
 	if (req.session.loggedin) {
-		let query = "DELETE FROM contacts WHERE id = \'" + req.session.userid + "\' AND fname = \'" + req.body.firstName + "\' "+
-		"AND lname = \'" + req.body.lastName + "\' AND phonenumber = \'" + req.body.phone + "\' AND email = \'" + req.body.email + "\'"+
-		" AND address = \'" + req.body.street + "\' AND city = \'" + req.body.city + "\' AND state = \'" + req.body.state + "\' AND zipcode = \'" + req.body.zip + "\';";
+		//let query = "DELETE FROM contacts WHERE id = \'" + req.session.userid + "\' AND fname = \'" + req.body.firstName + "\' "+
+		//"AND lname = \'" + req.body.lastName + "\' AND phonenumber = \'" + req.body.phone + "\' AND email = \'" + req.body.email + "\'"+
+		//" AND address = \'" + req.body.street + "\' AND city = \'" + req.body.city + "\' AND state = \'" + req.body.state + "\' AND zipcode = \'" + req.body.zip + "\';";
+		let query = "DELETE FROM contacts WHERE id=\'" + req.session.userid + "\' AND contactId=\'" + req.body + "\';";
 		client.query(query, (err, res2) => {   
 			if (err) {
 				console.log(err.stack);
@@ -153,10 +154,10 @@ app.post('/delete', function (req, res) {
 	}
 });
 
-app.post("/contacts", function (req, res) {
+app.get("/contacts", function (req, res) {
 	console.log("recieving contacts info:")
 	if (req.session.loggedin) {
-		let query = 'SELECT * FROM contacts WHERE id =\'' + req.session.userid + '\' AND (LOWER(fname || \' \' || lname) LIKE LOWER(\'' + req.body.search + '%\') OR LOWER(lname) LIKE LOWER(\'' + req.body.search + '%\'));';
+		let query = 'SELECT * FROM contacts WHERE id =\'' + req.session.userid + '\';';
 		client.query(query, (err, res2) => {
 			if (err) {
 				console.log(err.stack);

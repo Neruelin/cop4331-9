@@ -1,6 +1,10 @@
 //   Initialize connection to server through URL.
 const urlBase = 'https://cop4331-9.herokuapp.com'
 
+$( document ).ready(function() {
+    console.log( "ready!" );
+});
+
 function displayErr () {
      if ($("#error").css("display") == "none"){
           $("#error").slideToggle();
@@ -169,11 +173,10 @@ function addContact()
      var url_add = 'https://cop4331-9.herokuapp.com/add';
 
      let contactData = {
-		  ID: id,
           firstName: document.getElementById('addFirst').value.trim(),
           lastName: document.getElementById('addLast').value.trim(),
           phone: document.getElementById('addPhone').value,
-		  email: document.getElementById('addEmail').value,
+          email: document.getElementById('addEmail').value,
           street: document.getElementById('addStreet').value,
           city: document.getElementById('addCity').value,
           state: document.getElementById('addState').value,

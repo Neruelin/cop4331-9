@@ -2,9 +2,10 @@
 <html>
 <head>
      <title>Login - COP4331-9</title>
+     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+     <script type="text/javascript" src="../js/jquery.js"></script>
      <script type="text/javascript" src="../js/helperFunctions.js"></script>
      <script type="text/javascript" src="../js/dashboard.js"></script>
-     <script type="text/javascript" src="../js/jquery.js"></script>
      <link type="text/css" rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -24,17 +25,21 @@
                               <div class="search-flexbox">
                                    <input id="search" type="text" class="text-area search-elements" placeholder="Search">
                                    <button id="search-btn" class="btn search-elements" onclick="searchContact();">Search</button>
+                                   <button id="refresh" class="btn" onclick="loadContacts();">Refresh</button>
                               </div>
                               <div class="extraButtons">
                                    <button id="add-btn" class="btn" onclick="createContact();">New Contact</button>
                                    <button id="SignOut-btn" class="btn signOut" onclick="signOut();">Sign Out</button>
+                                   <button class="btn" id="reload" onclick="loadContacts();"><span class="glyphicon glyphicon-refresh"></span></button>
                               </div>
                               <div class="contact-names">
 
                               </div>
                               <div class="contact-info-flex" id = "contact-info-flex">
-                                  <h1 id="Name" class="info"></h1>
-                                  <h3 id="fname" class="hidden-info"></h3>
+                                   <div id="filter-info" onclick="removeFilter();"> <strong>X</strong> <span id="filter-text"></span> 
+                                   </div>
+                                   <h1 id="Name" class="info"></h1>
+                                   <h3 id="fname" class="hidden-info"></h3>
 								  <h3 id="lname" class="hidden-info"></h3>
 								  <h3 id="city" class="hidden-info"></h3>
 								  <h3 id="state" class="hidden-info"></h3>

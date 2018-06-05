@@ -1,19 +1,13 @@
 const urlBase = 'https://cop4331-9.herokuapp.com'
 
-function displayErr () {
-     if ($("#error").css("display") == "none"){
-          $("#error").slideToggle();
-     }
-}
-
 function login()
 {
      var url_login = 'https://cop4331-9.herokuapp.com/login';
-     var user = document.getElementById('user-login').value;
+     var user = $('#user-login').value;
 
      let userdata = {
-          username: document.getElementById('user-login').value,
-          password: document.getElementById('password-login').value
+          username: $('#user-login').value,
+          password: $('#password-login').value
      }
 
      if (userdata.username == "" || userdata.password == "") {
@@ -62,11 +56,11 @@ function createAccount()
 
      //   Initialize userdata
      let userdata = {
-          firstname: document.getElementById('firstName').value,
-          lastname: document.getElementById('lastName').value,
-          email: document.getElementById('email').value,
-          username: document.getElementById('user-signup').value,
-	  password: document.getElementById('password-signup').value
+          firstname: $('#firstName').value,
+          lastname: $('#lastName').value,
+          email: $('#email').value,
+          username: $('#user-signup').value,
+	  password: $('#password-signup').value
      }
 
      $.post("/signup", userdata, function (res, status) {

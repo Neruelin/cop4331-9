@@ -42,10 +42,11 @@
 }
 
 .contact-info-flex{
+     margin-top:10px;
      display: none;
 	flex-direction: column;
      visibility: hidden;
-     width: 33vw;
+     width: 50vw;
      height: 66vh;
      overflow: hidden;
      border-radius: 10px;
@@ -59,6 +60,7 @@
 .extraButtons{
      display: flex;
      flex-direction: row;
+     width: 50vw;
 }
 
 .moreButtons{
@@ -246,6 +248,24 @@ p.info{
      display: none;
      visibility: hidden;
      flex-direction: column;
+}
+
+#filter-info {
+     display: none;
+     margin-top: 5px;
+     background-color: black;
+     font-family: 'Source Sans Pro';
+     max-width: 45vw;
+     color: white;
+     border-radius: 5px;
+}
+
+#filter-info > strong {
+     font-family: 'Comfortaa', cursive;
+}
+
+#filter-info:hover {
+     background-color: lightgrey;
 }
 
 #search{
