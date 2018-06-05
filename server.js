@@ -18,6 +18,7 @@ const saltRounds = 10;
 function checkInput(inputobj) {
 	let prohibitedChars = ['\"', '\'', ';']
 	for (let key in inputobj) {
+		if (inputobj[key].length > 50) return true;
 		for (let char in prohibitedChars) {
 			if ((inputobj[key]).indexOf(prohibitedChars[char]) > -1) {
 				console.log("invalid char of: " + inputobj[key] + " char: " + prohibitedChars[char]);
@@ -35,6 +36,10 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(cookieParser());
 app.use(session({secret: csprng(256, 36)}));
+app.use(function (req, res, next) {
+	console.log(req.body);
+	next();
+});
 
 /* defining static content directories
    Eg: accessing "domain.com/views" will actually access "server_directory/public/html/"
