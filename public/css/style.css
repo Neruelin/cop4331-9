@@ -93,7 +93,6 @@
 }
 
 .hidden-info{
-	display: none;
      font-family: 'Source Sans Pro', sans-serif;
      font-weight: 200;
      color: white;
@@ -283,7 +282,7 @@ p.info{
      border-width: 1px;
 
 }
-
+<strong style="font-family: 'Comfortaa', cursive">X</strong>
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
       font-family: 'Source Sans Pro', sans-serif;
       font-weight: 200;
