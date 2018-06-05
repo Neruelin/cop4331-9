@@ -94,7 +94,7 @@ app.post('/login', function (req, response) {
     }
 });
 
-app.post('/logout', function (req, response) {
+app.get('/logout', function (req, response) {
 	req.session.loggedin = false;
 	req.session.id = undefined;
 	res.redirect("/login");
