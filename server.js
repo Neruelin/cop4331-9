@@ -55,12 +55,8 @@ app.use('/js', 		express.static('public/js/'));
 client.connect(); // connect to db
 // for homepage get requests
 app.get('/', function (req, res) {
-	if (req.session.loggedin != true) {
 		console.log("Serving login.html");
 		res.sendFile(__dirname + '/public/html/login.html');
-	} else {
-		res.redirect("/dashboard");
-	}
 });
 
 app.post('/login', function (req, response) {
