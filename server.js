@@ -16,14 +16,15 @@ const saltRounds = 10;
 
 // Returns true if a prohibited character is detected, returns false otherwise
 function checkInput(inputobj) {
-	//xconsole.log(typeof inputobj["username"]);
 	let prohibitedChars = ['\"', '\'', ';']
 	for (let key in inputobj) {
 		for (let char in prohibitedChars) {
 			if ((inputobj[key]).indexOf(prohibitedChars[char]) > -1) {
 				console.log("invalid char of: " + inputobj[key] + " char: " + prohibitedChars[char]);
 				return true;
-	}}}
+				}
+			}
+		}
 	return false;
 }
 
@@ -49,26 +50,28 @@ app.use('/js', 		express.static('public/js/'));
 client.connect(); // connect to db
 // for homepage get requests
 app.get('/', function (req, res) {
-	req.session.loggedin = false;
-	console.log("Serving login.html");
-	res.sendFile(__dirname + '/public/html/login.html');
+	if (req.session.loggedin != true) {
+		console.log("Serving login.html");
+		res.sendFile(__dirname + '/public/html/login.html');
+	} else {
+		res.redirect("/dashboard");
+	}
 });
 
 app.get('/login', function (req, res) {
-	req.session.loggedin = false;
-	console.log("Serving login.html");
-	res.sendFile(__dirname + '/public/html/login.html');
+	if (req.session.loggedin != true) {
+		console.log("Serving login.html");
+		res.sendFile(__dirname + '/public/html/login.html');
+	} else {
+		res.redirect("/dashboard");
+	}
 });
-
-var id = 1;
 
 app.post('/login', function (req, response) {
 	console.log("receiving login info:");
-    console.log(req.body);
     if ( req.body.username.length > 50 ||
     	 checkInput(req.body)) {
     	response.status(400).end();
-    	return;
     } else {	
 		let query = 'SELECT * FROM users WHERE username=\'' + req.body.username +'\';';
 		client.query(query, (err, res) => {
@@ -89,77 +92,76 @@ app.post('/login', function (req, response) {
 			}
 		});
     }
-
 });
 
 app.post('/signup', function (req, res) {
 	console.log("recieving signup info:");
-	console.log(req.body);
-	if ( checkInput(req.body)) {
+	if (checkInput(req.body)) {
 		res.status(400).end();
-		return;	
 	} else {
 		let userdata = req.body;
-		var hash = bcrypt.hashSync(userdata.password, saltRounds);
-		let query= "INSERT INTO users (username, passwordhash, firstname, lastname, email) VALUES (\'" + userdata.username + "\', \'" + hash + "\', \'" + userdata.firstname + "\', \'" + userdata.lastname + "\', \'" + userdata.email + "\');";
+		let hash = bcrypt.hashSync(userdata.password, saltRounds);
+		let query = "INSERT INTO users (username, passwordhash, firstname, lastname, email) VALUES (\'" + userdata.username + "\', \'" + hash + "\', \'" + userdata.firstname + "\', \'" + userdata.lastname + "\', \'" + userdata.email + "\');";
 
 		client.query(query, (err, res) => {
 			if (err) {
 				console.log(err.stack);
 			}
 		});
-
-		res.status(200).send("got signup");
+		res.status(200).end();
 	}
 });
 
 app.post('/add', function (req, res) {
 	console.log("recieving add info:");
-	console.log(req.body);
-	let query= "INSERT INTO contacts (id, fname, lname, phonenumber, email, address, city, state, zipcode) VALUES (\'" + req.session.userid+ "\', \'" + req.body.firstName + "\', \'" + req.body.lastName + "\', \'" + req.body.phone + "\', \'" + req.body.email + "\', \'" + req.body.street + "\', \'" + req.body.city + "\', \'" + req.body.state + "\', \'" + req.body.zip + "\');";
-	console.log(query);
-				client.query(query, (err, res2) => {   
-					if (err) {
-						console.log(err.stack);
-					} else {
-						console.log(res2);
-					}
-				});
-	res.send("got add", 200);
+	if (req.session.loggedin) {
+		let query = "INSERT INTO contacts (id, fname, lname, phonenumber, email, address, city, state, zipcode) VALUES (\'" + req.session.userid+ "\', \'" + req.body.firstName + "\', \'" + req.body.lastName + "\', \'" + req.body.phone + "\', \'" + req.body.email + "\', \'" + req.body.street + "\', \'" + req.body.city + "\', \'" + req.body.state + "\', \'" + req.body.zip + "\');";
+		console.log(query);
+			client.query(query, (err, res2) => {   
+				if (err) {
+					console.log(err.stack);
+				} else {
+					console.log(res2);
+				}
+			});
+		res.status(200).end();
+	} else {
+		res.redirect("/login");
+	}
 });
 
 app.post('/delete', function (req, res) {
 	console.log("recieving add info:");
-	console.log(req.body);
-	let query= "DELETE FROM contacts WHERE id = \'" + req.session.userid + "\' AND fname = \'" + req.body.firstName + "\' "+
-	"AND lname = \'" + req.body.lastName + "\' AND phonenumber = \'" + req.body.phone + "\' AND email = \'" + req.body.email + "\'"+
-	" AND address = \'" + req.body.street + "\' AND city = \'" + req.body.city + "\' AND state = \'" + req.body.state + "\' AND zipcode = \'" + req.body.zip + "\';";
-	console.log(query);
-				client.query(query, (err, res2) => {   
-					if (err) {
-						console.log(err.stack);
-					} else {
-						console.log(res2);
-					}
-				});
-	res.send("deleted", 200);
+	if (req.session.loggedin) {
+		let query = "DELETE FROM contacts WHERE id = \'" + req.session.userid + "\' AND fname = \'" + req.body.firstName + "\' "+
+		"AND lname = \'" + req.body.lastName + "\' AND phonenumber = \'" + req.body.phone + "\' AND email = \'" + req.body.email + "\'"+
+		" AND address = \'" + req.body.street + "\' AND city = \'" + req.body.city + "\' AND state = \'" + req.body.state + "\' AND zipcode = \'" + req.body.zip + "\';";
+		client.query(query, (err, res2) => {   
+			if (err) {
+				console.log(err.stack);
+			}
+		});
+		res.status(200).end();
+	} else {
+		res.redirect("/login");
+	}
 });
 
 app.post("/contacts", function (req, res) {
 	console.log("recieving contacts info:")
-	console.log(req.body);
-	let query = 'SELECT * FROM contacts WHERE id =\'' + req.session.userid + '\' AND (LOWER(fname || \' \' || lname) LIKE LOWER(\'' + req.body.search + '%\') OR LOWER(lname) LIKE LOWER(\'' + req.body.search + '%\'));';
-	console.log(query)
-	client.query(query, (err, res2) => {
-		if (err) {
-			console.log(err.stack);
-		} else {
-			console.log(res2);
-			if (res2.rowCount != 0) res.status(200).send(res2.rows); //you fucking forgot to put the [0] index. we'll maybe take this out eventually
-			else res.status(404).end();
-		}
-	});
-	
+	if (req.session.loggedin) {
+		let query = 'SELECT * FROM contacts WHERE id =\'' + req.session.userid + '\' AND (LOWER(fname || \' \' || lname) LIKE LOWER(\'' + req.body.search + '%\') OR LOWER(lname) LIKE LOWER(\'' + req.body.search + '%\'));';
+		client.query(query, (err, res2) => {
+			if (err) {
+				console.log(err.stack);
+			} else {
+				if (res2.rowCount != 0) res.status(200).send(res2.rows);
+				else res.status(404).end();
+			}
+		});
+	} else {
+		res.redirect("/login");
+	}
 });
 
 // dumps user table if logged in
@@ -177,16 +179,14 @@ app.get('/db', function (req, res) {
 			res.send(dbresult);
 		});
 	} else {
-		res.status(401).end();
+		res.redirect("/login");
 	}
 });
 
 app.get('/dashboard', function (req, res) {
 	if (req.session.loggedin) {
 		console.log("Serving dashboard.html");
-		console.log(__dirname);
 		return res.status(200).sendFile(__dirname + '/public/html/dashboard.html');
-		
 	} else {
 		res.redirect("/login");
 	}
