@@ -69,7 +69,7 @@ app.get('/login', function (req, res) {
 
 app.post('/login', function (req, response) {
 	console.log("receiving login info:");
-    if ( req.body.username.length > 50 ||
+    if ( req.body.username > 50 ||
     	 checkInput(req.body)) {
     	response.status(400).end();
     } else {	
@@ -154,7 +154,7 @@ app.post('/delete', function (req, res) {
 	}
 });
 
-app.get("/contacts", function (req, res) {
+app.post("/contacts", function (req, res) {
 	console.log("recieving contacts info:")
 	if (req.session.loggedin) {
 		let query = 'SELECT * FROM contacts WHERE id =\'' + req.session.userid + '\';';

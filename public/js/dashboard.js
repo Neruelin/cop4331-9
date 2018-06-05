@@ -12,7 +12,7 @@ $(document).ready(() => {
 });
 
 function loadContacts () {
-	$.get("/contacts", function (res, status) {
+	$.post("/contacts", undefined, function (res, status) {
 		console.log(res);
 		show('contact-info-flex', true);
 		results = res;
