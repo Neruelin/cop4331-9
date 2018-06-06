@@ -70,10 +70,12 @@ function searchContact()
 	if (filteredResults.length > 0) {
 		filter = true;
 		index = filteredResults[0];
+		displayContact();
 	} else {
 		alert("No contact containing \"" + search "\" found.");
+		removeFilter();
 	}
-	displayContact();
+	
 }
 
 function removeFilter () {
