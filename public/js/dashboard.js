@@ -67,8 +67,12 @@ function searchContact()
 			filteredResults.push(key);
 		}
 	}
-	filter = true;
-	index = filteredResults[0];
+	if (filteredResults.length > 0) {
+		filter = true;
+		index = filteredResults[0];
+	} else {
+		alert("No contact containing \"" + search "\" found.");
+	}
 	displayContact();
 }
 
