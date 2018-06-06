@@ -90,7 +90,7 @@ app.post('/login', function (req, response) {
 						req.session.loggedin = true;
 						req.session.userid = res.rows[0].id;
 						console.log("redirecting to dash");
-						response.status(200).send(res.rows[0]);
+						response.status(200).end();
 					} else {
 						response.status(401).end();
 					}
