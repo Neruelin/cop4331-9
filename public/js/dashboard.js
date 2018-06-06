@@ -71,7 +71,7 @@ function searchContact()
 		filter = true;
 		index = filteredResults[0];
 	} else {
-		alert("No contact containing \"" + search "\" found.");
+		alert("No contact containing \"" + search + "\" found.");
 	}
 	displayContact();
 }
