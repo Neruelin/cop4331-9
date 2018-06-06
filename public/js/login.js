@@ -17,7 +17,7 @@ function login()
 
      console.log(JSON.stringify(userdata));
      $.post(url_login, userdata, function (res, status) {
-		id = res;
+		//id = res;
 	  window.location = '/dashboard';
      }).fail(function () {
           displayErr();
