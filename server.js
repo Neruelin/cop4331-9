@@ -83,8 +83,10 @@ app.post('/login', function (req, response) {
     } else {	
 		let query = 'SELECT * FROM users WHERE username=\'' + req.body.username +'\';';
 		client.query(query, (err, res) => {
+			if (!err){
 			if (res.rowCount == 1) {
 				bcrypt.compare(req.body.password, res.rows[0].passwordhash, (err2, same) => {
+					if (!err2){
 					console.log("password compare: " + same);
 					if (same) {
 						req.session.loggedin = true;
@@ -95,9 +97,16 @@ app.post('/login', function (req, response) {
 					} else {
 						response.status(401).end();
 					}
+					} else {
+						console.log(err2);
+					}
+					
 				});
 			} else {
 				response.status(401).end();
+			}
+			} else {
+				console.log(err);
 			}
 		});
     }
