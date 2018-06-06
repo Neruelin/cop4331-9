@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const path = require('path');
 const bodyparser = require('body-parser');
 const express = require('express');
-const session = require('express-session');
+const Session = require('express-session');
 const cookieParser = require('cookie-parser');
 const csprng = require('csprng');
 const { Client } = require('pg');
@@ -35,7 +35,7 @@ const port = process.env.PORT || 8080; // uses server env port if exists, else u
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(cookieParser());
-app.use(session({secret: csprng(256, 36)}));
+app.use(Session({secret: csprng(256, 36)}));
 app.use(function (req, res, next) {
 	if (checkInput(req.body)) {
 		res.status(400).send();
@@ -211,6 +211,7 @@ app.get('/db', function (req, res) {
 
 app.get('/dashboard', function (req, res) {
 	//if (req.session.loggedin) {
+		console.log(req.session.loggedin);
 		console.log("Serving dashboard.html");
 		return res.status(200).sendFile(__dirname + '/public/html/dashboard.html');
 	//} else {
