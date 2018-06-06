@@ -38,9 +38,16 @@ function createContact()
 //   Display selected contact.
 function displayContact()
 {
+	
 	var res = results[index];
-
+	if (filter == true){
+		res = filteredResults[index];
+	}
+	if (filter == false){
 	$('#indexed').text((index+1) + "/" + results.length)
+	} else {
+	$('#indexed').text((index+1) + "/" + filteredResults.length)
+	}
 	$('#Name').text(res.fname + ' ' + res.lname);
 	$('#Phone').text(res.phonenumber);
 	$('#Email').text(res.email);
@@ -68,7 +75,7 @@ function searchContact()
 		}
 	}
 	filter = true;
-	index = filteredResults[0];
+	index = 0;//filteredResults[0];
 	displayContact();
 }
 
@@ -80,20 +87,20 @@ function removeFilter () {
 }
 
 function nextContact(){
-	if (filter == true) {
-		index = filteredResults[Math.min(filteredResults.indexOf(index) + 1, filteredResults.length - 1)];
-	} else {
+	//if (filter == true) {
+	//	index = filteredResults[Math.min(filteredResults.indexOf(index) + 1, filteredResults.length - 1)];
+	//} else {
 		index = Math.min(index + 1, results.length - 1);
-	}
+	//}
 	displayContact();
 }
 
 function prevContact(){
-	if (filter == true) {
-		index = filteredResults[Math.max(filteredResults.indexOf(index) - 1, 0)];
-	} else {
+	//if (filter == true) {
+		//index = filteredResults[Math.max(filteredResults.indexOf(index) - 1, 0)];
+	//} else {
 		index = Math.max(index - 1, 0);
-	}
+	//}
 	displayContact();
 }
 
