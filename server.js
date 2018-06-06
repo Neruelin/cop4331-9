@@ -201,12 +201,12 @@ app.get('/db', function (req, res) {
 });
 
 app.get('/dashboard', function (req, res) {
-	if (req.session.loggedin) {
+	//if (req.session.loggedin) {
 		console.log("Serving dashboard.html");
 		return res.status(200).sendFile(__dirname + '/public/html/dashboard.html');
-	} else {
-		res.redirect("/login");
-	}
+	//} else {
+		//res.redirect("/login");
+	//}
 });
 
 // start app on port
