@@ -6,7 +6,6 @@ const Session = require('express-session');
 const cookieParser = require('cookie-parser');
 const csprng = require('csprng');
 const { Client } = require('pg');
-var enforce = require('express-sslify');
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
@@ -37,7 +36,20 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(cookieParser());
 app.use(Session({secret: csprng(256, 36)}));
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
+app.enable('trust proxy');
+
+// Add a handler to inspect the req.secure flag (see 
+// http://expressjs.com/api#req.secure). This allows us 
+// to know whether the request was via http or https.
+app.use (function (req, res, next) {
+        if (req.secure) {
+                // request was via https, so do no special handling
+                next();
+        } else {
+                // request was via http, so redirect to https
+                res.redirect('https://' + req.headers.host + req.url);
+        }
+});
 app.use(function (req, res, next) {
 	console.log(req.session.userid);
 	if (checkInput(req.body)) {
