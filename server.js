@@ -37,7 +37,7 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(cookieParser());
 app.use(Session({secret: csprng(256, 36)}));
-app.use(enforce.HTTPS());
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 app.use(function (req, res, next) {
 	console.log(req.session.userid);
 	if (checkInput(req.body)) {
