@@ -39,6 +39,7 @@ app.use(cookieParser());
 app.use(Session({secret: csprng(256, 36)}));
 app.use(enforce.HTTPS());
 app.use(function (req, res, next) {
+	console.log(req.session.userid);
 	if (checkInput(req.body)) {
 		res.status(400).send();
 	} else {
