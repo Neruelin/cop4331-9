@@ -6,6 +6,7 @@ const Session = require('express-session');
 const cookieParser = require('cookie-parser');
 const csprng = require('csprng');
 const { Client } = require('pg');
+var enforce = require('express-sslify');
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
@@ -36,6 +37,7 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(cookieParser());
 app.use(Session({secret: csprng(256, 36)}));
+app.use(enforce.HTTPS());
 app.use(function (req, res, next) {
 	if (checkInput(req.body)) {
 		res.status(400).send();
@@ -210,13 +212,13 @@ app.get('/db', function (req, res) {
 });
 
 app.get('/dashboard', function (req, res) {
-	//if (req.session.loggedin) {
+	if (req.session.loggedin) {
 		console.log(req.session.loggedin);
 		console.log("Serving dashboard.html");
 		return res.status(200).sendFile(__dirname + '/public/html/dashboard.html');
-	//} else {
-		//res.redirect("/login");
-	//}
+	} else {
+		res.redirect("/login");
+	}
 });
 
 // start app on port
