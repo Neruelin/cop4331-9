@@ -40,7 +40,7 @@ function displayContact()
 {
 	var res = results[index];
 
-	$('#indexed').text((index) + "/" + results.length)
+	$('#indexed').text((parseInt(index)+1).toString() + "/" + results.length)
 	$('#Name').text(res.fname + ' ' + res.lname);
 	$('#Phone').text(res.phonenumber);
 	$('#Email').text(res.email);
@@ -57,13 +57,13 @@ function displayContact()
 function searchContact()
 {
     var url_login = 'https://cop4331-9.herokuapp.com/contacts';
-	let search = $('#search').val();
+	let search = $('#search').val().toLowerCase();
 	$("#filter-text").text("Filtered by the term: \"" + search + "\".");
 	$("#filter-info").show();
 	search = new RegExp(search);
 	filteredResults = [];
 	for (var key in results) {
-		if (search.test(results[key].fname + " " + results[key].lname)) {
+		if (search.test(results[key].fname.toLowerCase() + " " + results[key].lname.toLowerCase())) {
 			filteredResults.push(key);
 		}
 	}
