@@ -97,7 +97,7 @@ app.post('/login', function (req, response) {
 					}
 				});
 			} else {
-				response.status(400).end();
+				response.status(401).end();
 			}
 		});
     }
