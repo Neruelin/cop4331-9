@@ -90,7 +90,7 @@ app.post('/login', function (req, response) {
 						req.session.loggedin = true;
 						req.session.userid = res.rows[0].id;
 						console.log("redirecting to dash");
-						response.set('Access-Control-Allow-Origin' : '*');
+						response.set('Access-Control-Allow-Origin','*');
 						response.status(200).end();
 					} else {
 						response.status(401).end();
