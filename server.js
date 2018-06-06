@@ -38,7 +38,7 @@ app.use(cookieParser());
 app.use(session({secret: csprng(256, 36)}));
 app.use(function (req, res, next) {
 	if (checkInput(req.body)) {
-		res.status(400).end();
+		res.status(400).send();
 	} else {
 		next();
 	}
@@ -79,7 +79,7 @@ app.post('/login', function (req, response) {
 	console.log("receiving login info:");
     if ( req.body.username > 50 ||
     	 checkInput(req.body)) {
-    	response.status(400).end();
+    	response.status(400).send();
     } else {	
 		let query = 'SELECT * FROM users WHERE username=\'' + req.body.username +'\';';
 		client.query(query, (err, res) => {
@@ -93,9 +93,9 @@ app.post('/login', function (req, response) {
 						req.session.userid = res.rows[0].id;
 						console.log("redirecting to dash");
 						response.set('Access-Control-Allow-Origin','*');
-						response.status(200).end();
+						response.status(200).send();
 					} else {
-						response.status(401).end();
+						response.status(401).send();
 					}
 					} else {
 						console.log(err2);
@@ -103,7 +103,7 @@ app.post('/login', function (req, response) {
 					
 				});
 			} else {
-				response.status(401).end();
+				response.status(401).send();
 			}
 			} else {
 				console.log(err);
@@ -121,7 +121,7 @@ app.get('/logout', function (req, res) {
 app.post('/signup', function (req, res) {
 	console.log("recieving signup info:");
 	if (checkInput(req.body)) {
-		res.status(400).end();
+		res.status(400).send();
 	} else {
 		let userdata = req.body;
 		let hash = bcrypt.hashSync(userdata.password, saltRounds);
@@ -132,7 +132,7 @@ app.post('/signup', function (req, res) {
 				console.log(err.stack);
 			}
 		});
-		res.status(200).end();
+		res.status(200).send();
 	}
 });
 
@@ -148,7 +148,7 @@ app.post('/add', function (req, res) {
 					console.log(res2);
 				}
 			});
-		res.status(200).end();
+		res.status(200).send();
 	} else {
 		res.redirect("/login");
 	}
@@ -167,7 +167,7 @@ app.post('/delete', function (req, res) {
 				console.log(err.stack);
 			}
 		});
-		res.status(200).end();
+		res.status(200).send();
 	} else {
 		res.redirect("/login");
 	}
@@ -182,7 +182,7 @@ app.post("/contacts", function (req, res) {
 				console.log(err.stack);
 			} else {
 				if (res2.rowCount != 0) res.status(200).send(res2.rows);
-				else res.status(404).end();
+				else res.status(404).send();
 			}
 		});
 	} else {
