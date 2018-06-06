@@ -190,5 +190,6 @@ function goBack()
 //   Sign out.
 function signOut()
 {
-	$.get("/logout");
+	//$.get("/logout");
+	window.location = '/logout';
 }
